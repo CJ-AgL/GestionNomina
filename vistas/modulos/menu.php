@@ -46,10 +46,10 @@
 						
 						<li>
 							
-							<a href="cargaEmpleados">
+							<a href="empleados">
 
 								<i class="fa fa-circle-o"></i>
-								<span>Ingresar Datos</span>
+								<span>Administar Empleados</span>
 
 							</a>
 
@@ -57,10 +57,22 @@
 
 						<li>
 							
-							<a href="visualizarEmpleados">
+							<a href="Documentos">
 
 								<i class="fa fa-circle-o"></i>
-								<span>Visualizar Datos</span>
+								<span>Documentos</span>
+
+							</a>
+
+						</li>
+
+
+						<li>
+							
+							<a href="HistorialSalarial">
+
+								<i class="fa fa-circle-o"></i>
+								<span>Historial Salarial</span>
 
 							</a>
 

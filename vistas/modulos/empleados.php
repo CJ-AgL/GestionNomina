@@ -28,8 +28,7 @@
                             <th>Estado Civil</th>
                             <th>Dirección</th>
                             <th>Correo</th>
-                            <th>Fecha Ingreso</th>
-                            <th>Documentos</th>
+                            <th>Datos</th>
                             <th style="width: 10px">Acciones</th>
                         </tr>
                     </thead>
@@ -50,16 +49,18 @@
                                     <td>'.$value["estadoCivil"].'</td>
                                     <td>'.$value["departamento"].'</td>
                                     <td>'.$value["correoElectronico"].'</td>
-                                    <td>'.$value["fechaIngreso"].'</td> 
                                     <td> 
                                                 
-                                    <a href="javascript:void(0);" class="btn btn-info" onclick="cargarDocumentos('.$value["idEmpleado"].')"><i class="fa fa-upload"></i> Cargar Documentos</a>
+                                    <a href="javascript:void(0);" class="btn btn-success" onclick="cargarDocumentos('.$value["idEmpleado"].')"><i class="fa fa-file-pdf-o"></i></a>
+
+                                    <a href="javascript:void(0);" class="btn btn-info" onclick="cargarDocumentos('.$value["idEmpleado"].')"><i class="fa fa-clipboard"></i></a>
                                         
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <button class="btn btn-warning btnEditarEmpleado" data-toggle="modal" data-target="#modalEditarEmpleado" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-pencil"></i></button>
-
+                                         <button class="btn btn-warning btnEditarEmpleado" data-toggle="modal" data-target="#modalEditarEmpleado" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-pencil"></i></button>
+                          
+                                        <button class="btn btn-danger btnEliminarEmpleado" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-times"></i></button>
 
                                         </div>
                                     </td>
@@ -145,7 +146,7 @@
               <div class="input-group"> 
 
                   <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                  <label for="fecha">Selecciona una fecha:</label>
+                  <label for="fecha">Selecciona fecha de nacimiento:</label>
                   <input type="date" class="form-control input-lg" name="nuevaFecha" id="nuevaFecha" placeholder="Ingresar fecha de Nacimiento" required>
 
               </div>
@@ -160,7 +161,7 @@
 
                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                  <select class="form-control input-lg" name="nuevoGenero">
+                  <select class="form-control input-lg" name="nuevoGenero" id="nuevoGenero">
                     
                       <option value="">Genero</option>
 
@@ -174,7 +175,7 @@
 
           </div>
 
-          <!-- ENTRADA PARA EL GENERO -->
+          <!-- ENTRADA PARA EL ESTADO CIVIL -->
           
            <div class="form-group"> 
 
@@ -182,7 +183,7 @@
 
                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                  <select class="form-control input-lg" name="nuevoEstado">
+                  <select class="form-control input-lg" name="nuevoEstado" id="nuevoEstado">
                     
                       <option value=""> Estado Civil</option>
 
@@ -245,9 +246,9 @@
   ===========================================-->
       <div class="modal-footer">
 
-        <a href="clientes" class="btn btn-default pull-left">Cancelar</a>
+        <a href="empleado" class="btn btn-default pull-left">Cancelar</a>
 
-        <button type="submit" class="btn btn-success">Guardar cliente</button>
+        <button type="submit" class="btn btn-success">Guardar Empleado</button>
 
       </div>
 
@@ -287,6 +288,201 @@
         </div>
     </div>
 </div>
+
+
+<!-- =========================================
+             MODAL EDITAR CLIENTE
+  ===========================================-->
+
+ 
+<!-- Modal -->
+<div id="modalEditarEmpleado" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+
+        <form role="form" method="post">  
+  <!-- =========================================
+             CABEZA DEL MODAL
+  ===========================================-->
+
+      <div class="modal-header" style="background: #2f4540; color: white">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <h4 class="modal-title">Editar Empleado</h4>
+
+      </div>
+
+<!-- =========================================
+             CUERPO DEL MODAL
+  ===========================================-->\
+      <div class="modal-body">
+      
+      <div class=" box-body">
+
+          <!-- ENTRADA PARA EL NOMBRE -->
+
+          <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="editarNombre" placeholder="Ingresar nombre" id="editarNombre" required>
+
+              </div>
+
+          </div>
+
+
+        <!-- ENTRADA PARA EL APELLIDO -->
+
+          <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="editarApellido" placeholder="Ingresar apellido" id="editarApellido" required>
+
+              </div>
+
+          </div>
+
+
+          <!-- ENTRADA PARA EL FECHA NACIMIENTO -->
+
+          <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                  <label for="fecha">Selecciona una fecha:</label>
+                  <input type="date" class="form-control input-lg" name="editarFecha" id="editarFecha" placeholder="Ingresar fecha de Nacimiento" required>
+
+              </div>
+
+          </div>
+
+            <!-- ENTRADA PARA EL GENERO -->
+          
+           <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                  <select class="form-control input-lg" name="editarGenero" id="editarGenero">
+
+                    
+                      <option value="">Genero</option>
+
+                      <option value="Hombre">Hombre</option>
+
+                      <option value="Mujer">Mujer</option>
+
+                  </select>
+
+              </div>
+
+          </div>
+
+          <!-- ENTRADA PARA EL ESTADO CIVIL -->
+          
+           <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                  <select class="form-control input-lg" name="editarCivil" id="editarCivil">
+
+                      <option value="">Estado Civil</option>
+
+                      <option value="Soltero">Soltero</option>
+
+                      <option value="Casado">Casado</option>
+
+                      <option value="Divorciado">Divorciado</option>
+
+                      <option value="Viudo">Viudo</option>
+
+                  </select>
+
+              </div>
+
+          </div>
+
+
+           <!-- ENTRADA PARA EL DIRECCION -->
+
+          <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="editarDireccion" id="editarDireccion" placeholder="Ingresar dirección"  required>
+
+              </div>
+
+          </div>
+
+
+          <!-- ENTRADA PARA EL EMAIL -->
+
+          <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+                  <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required>
+
+              </div>
+
+          </div>
+
+
+            <!-- ENTRADA PARA LA FOTO -->
+            <div class="form-group">
+                <label for="nuevaFoto">Seleccionar Foto:</label>
+                <input type="file" class="form-control-file" name="editarFoto" id="editarFoto">
+            </div>
+
+    </div>
+</div>  
+
+<!-- =========================================
+             PIE DEL MODAL
+  ===========================================-->
+      <div class="modal-footer">
+
+        <a href="empleados" class="btn btn-default pull-left">Cancelar</a>
+
+        <button type="submit" class="btn btn-success">Guardar cambios</button>
+
+      </div>
+
+      </form>
+
+      <?php 
+/*      $editarCliente = new ControladorClientes();
+      $editarCliente -> ctrEditarCliente();*/
+      ?>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+  
+
 
 
 

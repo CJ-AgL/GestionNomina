@@ -35,4 +35,62 @@ class ModeloEmpresas{
 		$stmt = null;
 
 	}
+
+	/*=============================================
+	CREAR EMPRESA
+	=============================================*/
+
+	static public function mdlIngresarEmpresa($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombreEmpresa, direccion, telefono) VALUES (:nombreEmpresa, :direccion, :telefono)");
+
+		$stmt->bindParam(":nombreEmpresa", $datos["nombreEmpresa"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}
+
+
+	/*=============================================
+	EDITAR EMPRESA
+	=============================================*/
+
+	static public function mdlEditarEmpresa($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombreEmpresa = :nombreEmpresa, direccion = :direccion,  telefono = :telefono WHERE idEmpresa = :idEmpresa");
+
+		$stmt->bindParam(":idEmpresa", $datos["idEmpresa"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombreEmpresa", $datos["nombreEmpresa"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
+	
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}
+
 }

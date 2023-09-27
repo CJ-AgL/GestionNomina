@@ -43,7 +43,7 @@
               <tr>
                 
                 <th style="width: 10px">#</th>
-              
+                <th style="width: 20px">Empleado</th>
                 <th>Usuario</th>
                 <th>Perfil</th>
                 <th>Empresa</th>
@@ -57,17 +57,17 @@
 
             <tbody>
               
-               <?php   
-$item = null;
-$valor = null;
+        <?php   
+        $item = null;
+        $valor = null;
 
-$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+        $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
-if ($usuarios) { // Verificar si se encontraron usuarios
+        if ($usuarios) { // Verificar si se encontraron usuarios
 
-    foreach ($usuarios as $key => $value) {
-        echo '<tr>  
-            <td>'.($key+1).'</td>';
+            foreach ($usuarios as $key => $value) {
+                echo '<tr>  
+                    <td>'.($key+1).'</td>';
 
 
         $itemEmpleado = "idEmpleado";
@@ -77,7 +77,7 @@ if ($usuarios) { // Verificar si se encontraron usuarios
 
         echo '<td><img src="data:image/jpeg;base64,'.base64_encode($respuestaEmpleado["foto"]).'" alt="Empleado Image" width="40"></td>';
 
-        echo '<td>'.$value["nombreUsuario"].'</td>;
+        echo '<td>'.$value["nombreUsuario"].'</td>
               <td>'.$value["perfil"].'</td>';
 
 
@@ -161,7 +161,7 @@ if ($usuarios) { // Verificar si se encontraron usuarios
                   
                   <div class="input-group">
                     
-                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-university"></i></span>
                     
                     <select id="nombreEmpresa" name="nombreEmpresa" class="form-control" required>
 
@@ -190,13 +190,13 @@ if ($usuarios) { // Verificar si se encontraron usuarios
 
 
 
-        <!-- ENTRADA PARA EL ID USUARIO -->
+        <!-- ENTRADA PARA EL EMMPLEADO -->
 
            <div class="form-group">
                   
                   <div class="input-group">
                     
-                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-male"></i></span>
                     
                     <select id="nombreEmpleado" name="nombreEmpleado" class="form-control" required>
 
@@ -232,7 +232,7 @@ if ($usuarios) { // Verificar si se encontraron usuarios
 
               <div class="input-group"> 
 
-                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                   <select class="form-control input-lg" name="nuevoPerfil" id="nuevoPerfil">
                     
@@ -256,7 +256,7 @@ if ($usuarios) { // Verificar si se encontraron usuarios
 
               <div class="input-group"> 
 
-                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                  <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
                   <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario"required>
 
@@ -468,3 +468,10 @@ if ($usuarios) { // Verificar si se encontraron usuarios
 
   </div>
  </div>
+
+<?php   
+
+        $borrarUsuario = new ControladorUsuarios();
+        $borrarUsuario -> ctrBorrarUsuario();
+
+?>
