@@ -13,68 +13,89 @@ class ControladorUsuarios {
 
             if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["idEmpresa"]) && 
                 preg_match('/^[a-zA-Z0-9]+$/', $_POST["nombreUsuario"]) &&
-                preg_match('/^[0-9.]+$/', $_POST["contrasena"])){
+               preg_match('/^[a-zA-Z0-9]+$/', $_POST["contrasena"])){
 
 
                 $encriptar = crypt($_POST["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
                 $tabla = "usuarios"; 
+
                 $item = "nombreUsuario";
                 $valor = $_POST["nombreUsuario"];
 
-            $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
+                $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
 
-            if (is_array($respuesta)) {
+                if(is_array($respuesta)){
 
                 if($respuesta["idEmpresa"] == $_POST["idEmpresa"] && $respuesta["nombreUsuario"] == $_POST["nombreUsuario"] && $respuesta["contrasena"] == $encriptar){
 
+                    if($respuesta["estado"] == 1){
 
-                if ($respuesta["estado"] == 1) {
+                   
                     $_SESSION["iniciarSesion"] = "ok";
                     $_SESSION["idUsuario"] = $respuesta["idUsuario"];
                     $_SESSION["nombreUsuario"] = $respuesta["nombreUsuario"];
                     $_SESSION["idEmpresa"] = $respuesta["idEmpresa"];
                     $_SESSION["perfil"] = $respuesta["perfil"];
 
+
                     /*=========================================
-                      REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
-                    ===========================================*/
+              REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
+                        ===========================================*/
 
-                    date_default_timezone_set('America/Guatemala');
+                        date_default_timezone_set('America/Guatemala');
 
-                    $fecha = date('Y-m-d');
-                    $hora = date('H:i:s');
+                        $fecha = date('Y-m-d');
+                        $hora = date('H:i:s');
 
-                    $fechaActual = $fecha . ' ' . $hora;
+                        $fechaActual = $fecha.' '.$hora;
 
-                    $item1 = "ultimo_login";
-                    $valor1 = $fechaActual;
+                        $item1 = "ultimo_login";
+                        $valor1 = $fechaActual;
 
-                    $item2 = "idUsuario";
-                    $valor2 = $respuesta["idUsuario"];
+                        $item2 = "idUsuario";
+                        $valor2 = $respuesta["idUsuario"];
 
-                    $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+                        $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
-                    if ($ultimoLogin == "ok") {
-                        echo '<script>
-                                window.location = "inicio";
-                              </script>';
-                    }
-                } else {
-                    echo '<br><div class="alert alert-danger">El usuario aún no está activado</div>';
+                        if($ultimoLogin == "ok"){
+
+                                echo '<script>
+
+                                            window.location =  "inicio";
+
+
+                                            </script>';
+
+                        }
+
+
+                }else{
+
+                        echo '<br>
+                                  <div class="alert alert-danger">El usuario aún no está activado</div>';
+
                 }
-            } else {
-                echo '<br><div class="alert alert-danger">Datos ingresados incorrectos, vuelve a intentar</div>';
-            }
-        } else {
-            echo '<br><div class="alert alert-danger">Por favor, completa todos los campos</div>';
-            }
+
+            
+
+                }else{
+                    echo '<br><div class="alert alert-danger">Contraseña ingresada incorrecta vuelve a intentar</div>';
+
+                }
+
+
+        }else {
+                    echo '<br><div class="alert alert-danger">Usuario ingresado incorrecto vuelve a intentar</div>';    
+
         }
-    }
+  
+     }
+
+ }
+
 }
-
-
-
+ 
 
     /*=========================================
               MOSRAR USUARIOS
@@ -103,7 +124,7 @@ class ControladorUsuarios {
 
             $tabla = "usuarios";
 
-            $encriptar = crypt($_POST["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+            $encriptar = crypt($_POST["nuevaContrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
             $datos = array("idEmpresa" => $_POST["nombreEmpresa"],
                            "idEmpleado" => $_POST["nombreEmpleado"],

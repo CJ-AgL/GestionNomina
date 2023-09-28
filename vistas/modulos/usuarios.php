@@ -272,7 +272,7 @@
 
                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                  <input type="password" class="form-control input-lg" name="nuevaContrasena" placeholder="Ingresar Contraseña" idrequired>
+                  <input type="password" class="form-control input-lg" name="nuevaContrasena" id="nuevaContrasena" placeholder="Ingresar Contraseña" idrequired>
 
               </div>
 

@@ -36,19 +36,6 @@ class ModeloUsuarios {
       $stmt = null;
 
    }
-    /*=============================================
-       OBTENER TODOS LOS USUARIOS
-    =============================================*/
-
-    static public function mdlObtenerTodosUsuarios() {
-        $tabla = "usuarios";
-
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-
-        $stmt->execute();
-
-        return $stmt->fetchAll(); // Devuelve todos los registros como un array de arrays asociativos
-    }
 
     /*=============================================
        ACTUALIZAR USUARIO
