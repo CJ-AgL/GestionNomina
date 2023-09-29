@@ -1,4 +1,48 @@
 /*=============================================
+Recuperar los datos del empleado desde localStorage
+=============================================*/
+
+
+  var idEmpleado = localStorage.getItem('idEmpleado');
+  var nombreEmpleado = localStorage.getItem('nombreEmpleado');
+  var apellidoEmpleado = localStorage.getItem('apellidoEmpleado');
+
+  // Mostrar el nombre y apellido en el campo correspondiente
+  document.getElementById('nombreApellidoEmpleado').value = nombreEmpleado + ' ' + apellidoEmpleado;
+  // Actualizar el valor del campo oculto
+  document.querySelector('input[name="idEmpleado"]').value = idEmpleado;
+
+/*=============================================
+Función para Cargar Documentos de Empleado
+=============================================*/
+function cargarDocumentos(idEmpleado, nombreEmpleado, apellidoEmpleado) {
+    // Guardar los datos en localStorage
+    localStorage.setItem('idEmpleado', idEmpleado);
+    localStorage.setItem('nombreEmpleado', nombreEmpleado);
+    localStorage.setItem('apellidoEmpleado', apellidoEmpleado);
+
+    // Crear un formulario dinámico
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'cargarDocumentos';
+
+    // Crear un campo de entrada oculto para pasar el ID del empleado
+    var inputIdEmpleado = document.createElement('input');
+    inputIdEmpleado.type = 'hidden';
+    inputIdEmpleado.name = 'idEmpleado';
+    inputIdEmpleado.value = idEmpleado;
+
+    // Agregar el campo de entrada al formulario
+    form.appendChild(inputIdEmpleado);
+
+    // Agregar el formulario a la página y enviarlo
+    document.body.appendChild(form);
+    form.submit();
+}
+
+
+
+/*=============================================
     EDITAR CLIENTE
 =============================================*/
 
@@ -28,8 +72,9 @@ $.ajax({
     $("#editarGenero").val(respuesta["genero"]);
     $("#editarCivil").val(respuesta["estadoCivil"]);
     $("#editarDireccion").val(respuesta["departamento"]);
-    $("#editarEmail").val(respuesta["email"]);
+    $("#editarEmail").val(respuesta["correoElectronico"]);
     
+
     
     }
 
@@ -37,27 +82,36 @@ $.ajax({
 
 })
 
+
+
 /*=============================================
-Función para Cargar Documentos de Empleado
+ELIMINAR EMPLEADO
 =============================================*/
 
 
-function cargarDocumentos(idEmpleado) {
-    // Crear un formulario dinámico
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'cargarDocumentos';
+$(document).on("click", ".btnEliminarEmpleado", function(){
 
-    // Crear un campo de entrada oculto para pasar el ID del empleado
-    var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'idEmpleado';
-    input.value = idEmpleado;
+    var idEmpleado = $(this).attr("idEmpleado");
 
-    // Agregar el campo de entrada al formulario
-    form.appendChild(input);
 
-    // Agregar el formulario a la página y enviarlo
-    document.body.appendChild(form);
-    form.submit();
-}
+    swal({
+
+        title: '¿Está seguro de borrar esta empleado?',
+        text: "¡Si no lo está puede cancelar la acción!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrar Empleado!',
+
+    }).then((result)=>{
+
+        if(result.value){
+
+            window.location = "index.php?ruta=empleados&idEmpleado="+idEmpleado;
+        }
+
+    });
+
+})

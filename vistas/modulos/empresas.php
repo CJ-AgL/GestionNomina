@@ -75,10 +75,10 @@
                         
                         <div class="btn-group">
                           
+                        
                           <button class="btn btn-warning btnEditarEmpresa" idEmpresa="'.$value["idEmpresa"].'" data-toggle="modal" data-target="#modalEditarEmpresa"><i class="fa fa-pencil"></i></button>
 
-                          <button class="btn btn-danger btnEliminarEmpresa" idEmpresa="'.$value["idEmpresa"].'"><i class="fa fa-times"></i></button>
-                          
+                           <button class="btn btn-danger btnEliminarEmpresa" idEmpresa="'.$value["idEmpresa"].'"><i class="fa fa-times"></i></button>
 
                         </div>
 
@@ -210,39 +210,39 @@
 
 </div>  
 
+
 <!-- =========================================
-             MODAL EDITAR EMPRESA  
-===========================================-->
+               MODAL EDITAR EMPRESA
+    ===========================================-->
 
- 
-<!-- Modal -->
-<div id="modalEditarEmpresa" class="modal fade" role="dialog">
+   
+  <!-- Modal -->
+  <div id="modalEditarEmpresa" class="modal fade" role="dialog">
 
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    
-    <div class="modal-content">
+      
+      <div class="modal-content">
 
-        <form role="form" method="post">  
-  <!-- =========================================
-             CABEZA DEL MODAL
-  ===========================================-->
+          <form role="form" method="post">  
+    <!-- =========================================
+               CABEZA DEL MODAL
+    ===========================================-->
 
-      <div class="modal-header" style="background: #2f4540; color: white">
+        <div class="modal-header" style="background: #2f4540; color: white">
 
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        <h4 class="modal-title">Editar Empresa</h4>
+          <h4 class="modal-title">Editar Empresa</h4>
 
-      </div>
+        </div>
 
 <!-- =========================================
              CUERPO DEL MODAL
-  ===========================================-->\
+  ===========================================-->
       <div class="modal-body">
       
       <div class=" box-body">
-
 
         <!-- ENTRADA PARA EL NOMBRE -->
 
@@ -250,16 +250,17 @@
 
               <div class="input-group"> 
 
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                   <input type="text" class="form-control input-lg" name="editarEmpresa" id="editarEmpresa" required>
-                  <input type="hidden" id="idEmpresa" name="idEmpresa">
+
+                  <input type="hidden" name="idEmpresa" id="idEmpresa" required>
 
               </div>
 
           </div>
 
-            <!-- ENTRADA PARA EL DIRECCIÓN -->
+           <!-- ENTRADA PARA EL DIRECCIÓN -->
 
           <div class="form-group"> 
 
@@ -272,7 +273,6 @@
               </div>
 
           </div>
-
 
           <!-- ENTRADA PARA EL TELÉFONO -->
 
@@ -298,23 +298,30 @@
   ===========================================-->
       <div class="modal-footer">
 
-        <a href="empresas" class="btn btn-default pull-left">Cancelar</a>
+        <button type="button" class="btn btn-default  pull-left" data-dismiss="modal">Salir</button>
 
         <button type="submit" class="btn btn-success">Guardar cambios</button>
 
       </div>
 
+      <?php  
+      $editarEmpresa = new ControladorEmpresas();
+      $editarEmpresa -> ctrEditarEmpresa();
+ 
+      ?>
+
       </form>
 
-      <?php 
-
-      $editarEmpresa= new ControladorEmpresas();
-      $editarEmpresa-> ctrEditarEmpresa();
-
-      ?>
     </div>
 
   </div>
 
-</div>  
+</div>
 
+ 
+<?php   
+
+        $borrarEmpresa = new ControladorEmpresas();
+        $borrarEmpresa -> ctrBorrarEmpresa();
+
+?>

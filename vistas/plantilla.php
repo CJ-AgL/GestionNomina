@@ -148,7 +148,6 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
       $_GET["ruta"] == "usuarios" ||
       $_GET["ruta"] == "empleados" ||
       $_GET["ruta"] == "cargarDocumentos" ||
-      $_GET["ruta"] == "visualizarEmpelados" ||
       $_GET["ruta"] == "categorias" ||  
       $_GET["ruta"] == "productos" ||
       $_GET["ruta"] == "empresas" ||
@@ -196,6 +195,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
 <script src="vistas/js/imagen.js"></script>
 <script src="vistas/js/empleados.js"></script>
 <script src="vistas/js/empresas.js"></script>
+<script src="vistas/js/capemple.js"></script>
 
 
 

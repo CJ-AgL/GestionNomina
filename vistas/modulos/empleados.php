@@ -51,7 +51,9 @@
                                     <td>'.$value["correoElectronico"].'</td>
                                     <td> 
                                                 
-                                    <a href="javascript:void(0);" class="btn btn-success" onclick="cargarDocumentos('.$value["idEmpleado"].')"><i class="fa fa-file-pdf-o"></i></a>
+                                   <a href="javascript:void(0);" class="btn btn-success" onclick="cargarDocumentos('.$value["idEmpleado"].', \''.$value['nombre'].'\', \''.$value['apellido'].'\')"><i class="fa fa-file-pdf-o"></i></a>
+
+
 
                                     <a href="javascript:void(0);" class="btn btn-info" onclick="cargarDocumentos('.$value["idEmpleado"].')"><i class="fa fa-clipboard"></i></a>
                                         
@@ -60,7 +62,8 @@
                                         <div class="btn-group">
                                          <button class="btn btn-warning btnEditarEmpleado" data-toggle="modal" data-target="#modalEditarEmpleado" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-pencil"></i></button>
                           
-                                        <button class="btn btn-danger btnEliminarEmpleado" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-times"></i></button>
+                                         <button class="btn btn-danger btnEliminarEmpleado" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-times"></i></button>
+
 
                                         </div>
                                     </td>
@@ -72,6 +75,28 @@
             </div>
         </div>
     </section>
+</div>
+
+<!-- =========================================
+             MODAL VER IMAGEN
+  ===========================================-->
+
+  <div id="modalVerImagen" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">IMG-EMPLEADO</h3>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <img src="" alt="Imagen del Empleado" class="imagen-ampliada" style="width: 70%; display: inline-block;">
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success btnDescargarImagen" download>Descargar</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -267,28 +292,6 @@
 
 </div>  
 
-<!-- =========================================
-             MODAL VER IMAGEN
-  ===========================================-->
-
-  <div id="modalVerImagen" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="text-align: center;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">IMG-EMPLEADO</h3>
-            </div>
-            <div class="modal-body" style="text-align: center;">
-                <img src="" alt="Imagen del Empleado" class="imagen-ampliada" style="width: 70%; display: inline-block;">
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-success btnDescargarImagen" download>Descargar</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <!-- =========================================
              MODAL EDITAR CLIENTE
@@ -469,10 +472,8 @@
 
       </form>
 
-      <?php 
-/*      $editarCliente = new ControladorClientes();
-      $editarCliente -> ctrEditarCliente();*/
-      ?>
+       
+
     </div>
 
   </div>
@@ -480,9 +481,11 @@
 </div>
 
 
+ <?php   
 
-  
+        $borrarEmpleado = new ControladorEmpleados();
+        $borrarEmpleado -> ctrBorrarEmpleado();
 
-
+?>
 
 

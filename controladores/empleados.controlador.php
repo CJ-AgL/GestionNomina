@@ -1,24 +1,10 @@
-
  <?php
 
-/*=============================================
-    MOSTRAR EMPLEADOS
- =============================================*/
+
     class ControladorEmpleados{
 
-
-    static public function ctrMostrarEmpleados($item, $valor){
-
-        $tabla = "empleados";
-
-        $respuesta = ModeloEmpleados::mdlMostrarEmpleados($tabla, $item, $valor);
-
-        return $respuesta;
-
-    }
-
         /*=============================================
-        AGREGAR EMPLEADOS
+        CREAR EMPLEADOS
         =============================================*/
 
           static public function ctrAgregarEmpleado() {
@@ -89,4 +75,62 @@
             }
         }
     }
+
+    /*=============================================
+    MOSTRAR EMPLEADOS
+ =============================================*/
+    static public function ctrMostrarEmpleados($item, $valor){
+
+        $tabla = "empleados";
+
+        $respuesta = ModeloEmpleados::mdlMostrarEmpleados($tabla, $item, $valor);
+
+        return $respuesta;
+
+    }
+
+
+    /*=========================================
+           BORRAR EMPLEADO
+    ===========================================*/
+
+    static public function ctrBorrarEmpleado(){
+
+        if(isset($_GET["idEmpleado"])){
+
+            $tabla = "idEmpleado";
+            $datos = $_GET["idEmpleado"];
+
+            $respuesta = ModeloEmpleados::mdlBorrarEmpleado($tabla, $datos);
+
+            if($respuesta == "ok"){
+
+                echo '<script>
+
+                    swal({
+
+                            type: "success",
+                            title: "La Empleado ha sido borrada correctamente", 
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+
+                            }).then((result)=>{
+
+                                    if(result.value){
+
+                                        window.location = "empleados";
+                                    }
+
+                                })
+
+                </script>';
+
+
+            }
+
+        }
+
+    }
+
 }

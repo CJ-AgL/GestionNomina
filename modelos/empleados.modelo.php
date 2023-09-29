@@ -4,44 +4,9 @@
 
 
 class ModeloEmpleados{
-/*=============================================
-    MOSTRAR EMPLEADOS
- =============================================*/
-
-    static public function mdlMostrarEmpleados($tabla, $item, $valor){
-
-        if($item != null){
-
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-
-            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-            $stmt -> execute();
-
-            return $stmt -> fetch();
-
-        }else{
-
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-
-            $stmt -> execute();
-
-            return $stmt -> fetchAll();
-
-        }
-
-        $stmt -> close();
-
-        $stmt = null;
-
-        }
-
-        /*=============================================
-         AGREGAR EMPLEADOS
-         =============================================*/
 
 
-      /*=============================================
+   /*=============================================
     AGREGAR EMPLEADOS
     =============================================*/
 
@@ -74,6 +39,66 @@ class ModeloEmpleados{
             return "error"; // Puedes personalizar el mensaje de error según tu lógica.
         }
     }
+
+/*=============================================
+    MOSTRAR EMPLEADOS
+ =============================================*/
+
+    static public function mdlMostrarEmpleados($tabla, $item, $valor){
+
+        if($item != null){
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+            $stmt -> execute();
+
+            return $stmt -> fetch();
+
+        }else{
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+            $stmt -> execute();
+
+            return $stmt -> fetchAll();
+
+        }
+
+        $stmt -> close();
+
+        $stmt = null;
+
+        }
+
+
+    /*=========================================
+           BORRAR EMPRESAS
+  ===========================================*/
+
+  static public function mdlBorrarEmpleado($tabla, $datos){
+
+
+     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idEmpleado = :idEmpleado");
+
+    $stmt->bindParam(":idEmpleado", $datos, PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+            return "ok";
+
+         }else{
+
+            return "error";
+         }
+
+         $stmt->close();
+
+         $stmt = null;
+
+
+  }
+
 }
-?>
 

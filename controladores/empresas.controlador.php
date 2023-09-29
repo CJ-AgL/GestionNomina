@@ -161,5 +161,51 @@ class ControladorEmpresas{
 
 	}
 
+
+    /*=========================================
+           BORRAR EMPRESA
+    ===========================================*/
+
+    static public function ctrBorrarEmpresa(){
+
+        if(isset($_GET["idEmpresa"])){
+
+            $tabla = "empresas";
+            $datos = $_GET["idEmpresa"];
+
+            $respuesta = ModeloEmpresas::mdlBorrarEmpresa($tabla, $datos);
+
+            if($respuesta == "ok"){
+
+                echo '<script>
+
+                    swal({
+
+                            type: "success",
+                            title: "La empresa ha sido borrada correctamente", 
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+
+                            }).then((result)=>{
+
+                                    if(result.value){
+
+                                        window.location = "empresas";
+                                    }
+
+                                })
+
+                </script>';
+
+
+            }
+
+        }
+
+    }
+
 }
+
+
 
