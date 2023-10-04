@@ -106,6 +106,10 @@ session_start();
   <!-- Select2 -->
   <script src="vistas/plugins/select2/select2.min.js"></script>
 
+  <!-- PDF -->
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+
+
   
 
 </head>
@@ -148,6 +152,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
       $_GET["ruta"] == "usuarios" ||
       $_GET["ruta"] == "empleados" ||
       $_GET["ruta"] == "cargarDocumentos" ||
+      $_GET["ruta"] == "mostrarDocumento" ||
       $_GET["ruta"] == "categorias" ||  
       $_GET["ruta"] == "productos" ||
       $_GET["ruta"] == "empresas" ||
@@ -195,7 +200,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
 <script src="vistas/js/imagen.js"></script>
 <script src="vistas/js/empleados.js"></script>
 <script src="vistas/js/empresas.js"></script>
-<script src="vistas/js/capemple.js"></script>
+<script src="vistas/js/documentos.js"></script>
 
 
 

@@ -1,4 +1,3 @@
-
   <div class="content-wrapper">
     
     <section class="content-header">
@@ -45,7 +44,8 @@
                  ===========================================-->
                   <div class="form-group">
                   <input type="text" class="form-control" value="" readonly id="nombreApellidoEmpleado">
-                  <input type="hidden" name="idEmpleado" value="">
+                  <input type="hidden" name="idEmpleado"  value="">
+
                   </div>
 
                   
@@ -93,7 +93,7 @@
           </div>  
                  
                 <!-- =========================================
-                         ENTRADA PARA AGREGAR EL PRODUCTO
+                         ENTRADA PARA AGREGAR EL DOCUMENTO
                  ===========================================-->
 
 
@@ -109,19 +109,14 @@
 
             <div class="box-footer">
               
-              <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+              <button type="submit" class="btn btn-primary pull-right">Guardar Documento</button>
  
             </div>
 
              </form>
 
 
-              <?php
-
-                $guardarDocumento= new ControladorDocumentos();
-                $guardarDocumento-> ctrAgregarDocumentos();
-                
-              ?>
+           
 
 
           </div>
@@ -133,7 +128,7 @@
 <!-- =========================================
             LA TABLA DE PRODUCTOS
   ===========================================-->
-      <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-7 ">
         
          <div class="box box-warning">
           
@@ -150,18 +145,39 @@
                     <th>Tipo</th>
                     <th>Nombre</th>
                     <th>Documento</th>
-                    <th>Acciones</th>
+                   
                   </tr>
 
                 </thead>
 
                 <tbody>
                   
-                  
+              <?php 
+                // Obtén el id del empleado almacenado en localStorage
+                $idEmpleado = $_POST['idEmpleado'] ?? ''; // Asegúrate de obtener el idEmpleado de la forma adecuada
 
-                    </td>
-                  </tr>
+                echo "ID del Empleado: " . $idEmpleado; // Agrega esta línea para depurar
 
+
+                $item = "idEmpleado";
+                $valor = $idEmpleado;
+
+                $documento = ControladorDocumentos::ctrMostrarDocumentosPorEmpleado($item, $valor);
+
+                foreach ($documento as $key => $value) {
+                echo '<tr>  
+                    <td>' . ($key + 1) . '</td>
+                    <td>' . $value["tipoDocumento"] . '</td>
+                    <td>' . $value["nombreArchivo"] . '</td>
+                    <td><a href="mostrarpdf?idDocumento=' . $value["idDocumento"] . '" target="_blank">Ver PDF</a></td>
+                </tr>';
+
+                    echo 'Valor de idDocumento: ' . $value["idDocumento"] . '<br>';
+
+
+                }
+
+                ?>
 
                 </tbody>
 
@@ -170,7 +186,6 @@
             </div>
             
         </div>
-
 
       </div>
       
