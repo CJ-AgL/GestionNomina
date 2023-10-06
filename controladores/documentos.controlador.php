@@ -16,27 +16,103 @@
         return ($respuesta != null) ? $respuesta : array();
     }
 
-    public static function mostrarContenidoPDFPorID()
-    {
-        if (isset($_GET['idDocumento'])) {
-            $idDocumento = $_GET['idDocumento'];
+    
 
-            // Obtén el contenido del PDF por ID utilizando el modelo
-            $contenidoPDF = ModeloDocumentos::obtenerContenidoPDFPorID($idDocumento);
+        /*=============================================
+        CREAR DOCUMENTO
+        =============================================*/
+        static public function ctrCrearDocumento() {
 
-            if ($contenidoPDF !== false) {
-                // Establece los encabezados para el PDF.
-                header('Content-Type: application/pdf');
-                header('Content-Disposition: inline; filename="documento.pdf"'); // Cambia el nombre del archivo según sea necesario.
+            if (isset($_POST["idEmpleado"]) && isset($_POST["nuevoTipo"]) && isset($_POST["nuevoNombreD"]) && isset($_FILES["nuevoDocumento"])) {
 
-                // Imprime el contenido del PDF.
-                echo $contenidoPDF;
-                exit; // Importante: detén la ejecución del script después de enviar el PDF.
-            } else {
-                echo "El PDF no se pudo cargar.";
+                // Validar y obtener los datos del formulario
+                $idEmpleado = $_POST["idEmpleado"];
+                $tipoDocumento = $_POST["nuevoTipo"];
+                $nombreDocumento = $_POST["nuevoNombreD"];
+
+                // Verificar si se ha cargado un documento
+                if ($_FILES["nuevoDocumento"]["error"] == 0) {
+                    $rutaDocumento = $_FILES["nuevoDocumento"]["tmp_name"];
+                    $tipoDocumentoArchivo = $_FILES["nuevoDocumento"]["type"];
+
+                    // Verificar si es un tipo de documento válido (puedes agregar más validaciones aquí)
+                    if ($tipoDocumentoArchivo == "application/pdf") {
+                        // Leer el contenido del documento en bytes
+                        $contenidoDocumento = file_get_contents($rutaDocumento);
+
+                        // Guardar el documento en la base de datos
+                        $tabla = "documentos";
+                        $datos = array(
+                            "idEmpleado" => $idEmpleado,
+                            "tipoDocumento" => $tipoDocumento,
+                            "nombreArchivo" => $nombreDocumento,
+                            "contenido" => $contenidoDocumento
+                        );
+
+                        $respuesta = ModeloDocumentos::mdlAgregarDocumento($tabla, $datos);
+
+                        if ($respuesta == "ok") {
+                            echo '<script>
+                                swal({
+                                    type: "success",
+                                    title: "El documento ha sido guardado correctamente",
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Cerrar",
+                                    closeOnConfirm: false
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location = "cargarDocumentos";
+                                    }
+                                });
+                            </script>';
+                        } else {
+                            echo '<script>
+                                swal({
+                                    type: "error",
+                                    title: "¡Error al guardar el documento!",
+                                    text: "Ocurrió un problema al guardar el documento en la base de datos.",
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Cerrar",
+                                    closeOnConfirm: false
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location = "cargarDocumentos";
+                                    }
+                                });
+                            </script>';
+                        }
+                    } else {
+                        echo '<script>
+                            swal({
+                                type: "error",
+                                title: "¡Tipo de documento inválido!",
+                                text: "Por favor, seleccione un documento en formato PDF.",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar",
+                                closeOnConfirm: false
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location = "cargarDocumentos";
+                                }
+                            });
+                        </script>';
+                    }
+                } else {
+                    echo '<script>
+                        swal({
+                            type: "error",
+                            title: "¡Error al cargar el documento!",
+                            text: "Por favor, seleccione un documento válido.",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = "documentos";
+                            }
+                        });
+                    </script>';
+                }
             }
-        } else {
-            echo "ID de documento no especificado.";
         }
     }
-}

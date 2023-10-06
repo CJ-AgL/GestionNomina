@@ -1,3 +1,8 @@
+<?php
+
+$idEmpleado = $_GET['idEmpleado'] ?? '';
+?>
+
   <div class="content-wrapper">
     
     <section class="content-header">
@@ -10,6 +15,7 @@
       <ol class="breadcrumb">
 
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="empleados"><i class="fa fa-dashboard"></i> Empleados</a></li>
 
         <li class="active">Cargar Documentos</li>
 
@@ -33,7 +39,7 @@
           
           <div class="box-header with-border">
 
-            <form role="form" method="post">
+            <form role="form" method="post" enctype="multipart/form-data">
 
             <div class="box-body">
 
@@ -42,11 +48,16 @@
                 <!-- =========================================
                                ENTRADA DEL EMPLEADO
                  ===========================================-->
-                  <div class="form-group">
-                  <input type="text" class="form-control" value="" readonly id="nombreApellidoEmpleado">
-                  <input type="hidden" name="idEmpleado"  value="">
+                       
 
-                  </div>
+                     <div class="form-group"> 
+
+                        <div class="input-group"> 
+                                    
+                                    <input type="hidden" name="idEmpleado" id="idEmpleado" value="<?php echo $idEmpleado; ?>">
+                            </div>
+
+                        </div>
 
                   
 
@@ -97,26 +108,34 @@
                  ===========================================-->
 
 
-                  <div class="form-group">
-                      <label for="nuevoDocumento">Seleccionar Documento:</label>
-                      <input type="file" class="form-control-file" name="nuevoDocumento" id="nuevoDocumento">
-                  </div>
+              <div class="form-group">
+                  <label for="nuevoDocumento">Seleccionar Documento:</label>
+                  <input type="file" class="form-control-file" name="nuevoDocumento" id="nuevoDocumento" required>
+              </div>
 
                       
             </div>
 
           </div>
 
-            <div class="box-footer">
-              
-              <button type="submit" class="btn btn-primary pull-right">Guardar Documento</button>
- 
+            <div class="form-group">
+
+                <button type="submit" class="btn btn-primary pull-right">Guardar Documento</button>
+                <button type="button" class="btn btn-danger" id="cancelarCarga">Cancelar</button>
             </div>
 
              </form>
 
 
-           
+          
+               <?php   
+
+                      $cargarDocumento = new ControladorDocumentos();
+                      $cargarDocumento -> ctrCrearDocumento();
+
+              ?>
+
+
 
 
           </div>
@@ -145,39 +164,50 @@
                     <th>Tipo</th>
                     <th>Nombre</th>
                     <th>Documento</th>
+                    <th style="width: 10px;">Acciones</th>
                    
                   </tr>
 
                 </thead>
 
                 <tbody>
-                  
-              <?php 
-                // Obtén el id del empleado almacenado en localStorage
-                $idEmpleado = $_POST['idEmpleado'] ?? ''; // Asegúrate de obtener el idEmpleado de la forma adecuada
+                 <?php
 
-                echo "ID del Empleado: " . $idEmpleado; // Agrega esta línea para depurar
+                  var_dump($idEmpleado);
 
 
-                $item = "idEmpleado";
-                $valor = $idEmpleado;
+                  // Comprueba si idEmpleado es un número válido antes de usarlo en la consulta
+                 if (is_numeric($idEmpleado)) {
+                      $item = "idEmpleado";
+                      $valor = $idEmpleado;
 
-                $documento = ControladorDocumentos::ctrMostrarDocumentosPorEmpleado($item, $valor);
+                      $documento = ControladorDocumentos::ctrMostrarDocumentosPorEmpleado($item, $valor);
 
-                foreach ($documento as $key => $value) {
-                echo '<tr>  
-                    <td>' . ($key + 1) . '</td>
-                    <td>' . $value["tipoDocumento"] . '</td>
-                    <td>' . $value["nombreArchivo"] . '</td>
-                    <td><a href="mostrarpdf?idDocumento=' . $value["idDocumento"] . '" target="_blank">Ver PDF</a></td>
-                </tr>';
+                      // Verifica si se encontraron documentos
+                      if (!empty($documento)) {
+                          foreach ($documento as $key => $value) {
+                              echo '<tr>  
+                                  <td>' . ($key + 1) . '</td>
+                                  <td>' . $value["tipoDocumento"] . '</td>
+                                  <td>' . $value["nombreArchivo"] . '</td>
+                                  <td><a href="mostrarDocumento?idDocumento=' . $value["idDocumento"] . '" target="_blank">Ver PDF</a></td>
 
-                    echo 'Valor de idDocumento: ' . $value["idDocumento"] . '<br>';
+                                  <td>
+                                  <div class="btn-group"> 
+                                      <button class="btn btn-danger btnEliminarDocuemento" idDocumento="'.$value["idDocumento"].'"><i class="fa fa-times"></i></button>
+                                  </div>
+                                  </td>
 
+                              </tr>';
+                          }
+                      } else {
+                          echo '<tr><td colspan="4">No se encontraron documentos para este empleado.</td></tr>';
+                      }
+                  } else {
+                      echo "El idEmpleado no es válido.";
+                  }
+                  ?>
 
-                }
-
-                ?>
 
                 </tbody>
 

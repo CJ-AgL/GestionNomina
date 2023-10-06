@@ -51,11 +51,11 @@
                                     <td>'.$value["correoElectronico"].'</td>
                                     <td> 
                                                 
-                                   <a href="javascript:void(0);" class="btn btn-success" onclick="cargarDocumentos('.$value["idEmpleado"].', \''.$value['nombre'].'\', \''.$value['apellido'].'\')"><i class="fa fa-file-pdf-o"></i></a>
+                                    <a href="#" class="btn btn-success btnDocumentos" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-clipboard"></i></a>
 
 
 
-                                    <a href="javascript:void(0);" class="btn btn-info" onclick="cargarDocumentos('.$value["idEmpleado"].')"><i class="fa fa-clipboard"></i></a>
+                                      <a href="#" class="btn btn-info btnHistorialSalarial" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-clipboard"></i></a>
                                         
                                     </td>
                                     <td>

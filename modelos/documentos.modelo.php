@@ -51,26 +51,26 @@ class ModeloDocumentos{
         }
     }
 
-    public static function obtenerContenidoPDFPorID($idDocumento)
-    {
+    /*=============================================
+    AGREGAR DOCUMENTO
+    =============================================*/
+    static public function mdlAgregarDocumento($tabla, $datos) {
         try {
-            $stmt = Conexion::conectar()->prepare("SELECT contenido FROM tu_tabla WHERE idDocumento = :idDocumento");
-            $stmt->bindParam(':idDocumento', $idDocumento, PDO::PARAM_INT);
-            $stmt->execute();
+            $conexion = Conexion::conectar();
+            $stmt = $conexion->prepare("INSERT INTO $tabla (idEmpleado, tipoDocumento, nombreArchivo, contenido) VALUES (:idEmpleado, :tipoDocumento, :nombreArchivo, :contenido)");
 
-            // Verifica si se encontró un resultado.
-            if ($stmt->rowCount() > 0) {
-                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-                return $resultado['contenido'];
+            $stmt->bindParam(":idEmpleado", $datos["idEmpleado"], PDO::PARAM_INT);
+            $stmt->bindParam(":tipoDocumento", $datos["tipoDocumento"], PDO::PARAM_STR);
+            $stmt->bindParam(":nombreArchivo", $datos["nombreArchivo"], PDO::PARAM_STR);
+            $stmt->bindParam(":contenido", $datos["contenido"], PDO::PARAM_LOB);
+
+            if ($stmt->execute()) {
+                return "ok";
             } else {
-                return false; // No se encontró el documento.
+                return "error";
             }
         } catch (PDOException $e) {
-            // Manejo de errores de base de datos (puedes personalizar esto según tus necesidades).
-            echo "Error en la consulta: " . $e->getMessage();
-            return false;
+            return "error"; // Puedes personalizar el mensaje de error según tu lógica.
         }
     }
 }
-
-

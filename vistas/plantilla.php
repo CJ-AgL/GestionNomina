@@ -4,6 +4,9 @@ session_start();
 
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +60,10 @@ session_start();
     <!-- select2 -->
   <link rel="stylesheet" href="vistas/plugins/select2/select2.min.css">
 
+  <!-- PDF -->
+
+  <link rel="stylesheet" type="text/css" href="vistas/plugins/pdfjs-3.11.174-dist/web/viewer.js">
+
   <!--=========================================
               PLUGINS DE JAVASCRIPT
   ===========================================-->
@@ -107,10 +114,11 @@ session_start();
   <script src="vistas/plugins/select2/select2.min.js"></script>
 
   <!-- PDF -->
-  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+<script src="vistas/plugins/pdfjs-3.11.174-dist/build/pdf.js"></script>
 
 
-  
+
+
 
 </head>
 
@@ -153,6 +161,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
       $_GET["ruta"] == "empleados" ||
       $_GET["ruta"] == "cargarDocumentos" ||
       $_GET["ruta"] == "mostrarDocumento" ||
+      $_GET["ruta"] == "historialLaboral" ||
       $_GET["ruta"] == "categorias" ||  
       $_GET["ruta"] == "productos" ||
       $_GET["ruta"] == "empresas" ||
@@ -201,6 +210,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
 <script src="vistas/js/empleados.js"></script>
 <script src="vistas/js/empresas.js"></script>
 <script src="vistas/js/documentos.js"></script>
+<script src="vistas/js/historialLaboral.js"></script>
 
 
 
