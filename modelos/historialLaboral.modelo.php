@@ -81,6 +81,31 @@ class ModeloHistoriales{
         $stmt = null;
 
     }
+     /*=========================================
+           BORRAR HISTORIAL LABORAL
+  ===========================================*/
+
+  static public function mdlBorrarHistorial($tabla, $datos){
+
+     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idHistorial = :idHistorial");
+
+    $stmt->bindParam(":idHistorial", $datos, PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+            return "ok";
+
+         }else{
+
+            return "error";
+         }
+
+         $stmt->close();
+
+         $stmt = null;
+
+
+  }
 }
 
   

@@ -15,7 +15,6 @@
 
 			</li>
 
-
 				<li>
 					
 					<a href="usuarios">
@@ -25,15 +24,40 @@
 
 					</a>
 
+				</li>
+			
+				<li>
+
+					<a href="empresas">
+						
+						<i class="fa fa-university"></i>
+						<span>Empresas</span>
+
+					</a>
 
 				</li>
 
+
+
 				<li>
-					
+
 					<a href="empleados">
 						
 						<i class="fa fa-users"></i>
 						<span>Empleados</span>
+
+					</a>
+
+				</li>
+
+				
+
+				<li>
+					
+					<a href="">
+						
+						<i class="fa fa-inbox"></i>
+						<span>Anticipos</span>
 						<span class="pull-right-container">
 							
 							<i class="fa fa-angle-left pull-right"></i>
@@ -46,10 +70,10 @@
 						
 						<li>
 							
-							<a href="empleados">
+							<a href="anticipos">
 
 								<i class="fa fa-circle-o"></i>
-								<span>Administar Empleados</span>
+								<span>Solicitar de Anticipos</span>
 
 							</a>
 
@@ -57,42 +81,27 @@
 
 						<li>
 							
-							<a href="Documentos">
+							<a href="solicitudesPendientes">
 
 								<i class="fa fa-circle-o"></i>
-								<span>Documentos</span>
+								<span>Solicitudes Pendientes</span>
 
 							</a>
 
 						</li>
-
 
 						<li>
 							
-							<a href="HistorialSalarial">
+							<a href="solicitudesAceptadas">
 
 								<i class="fa fa-circle-o"></i>
-								<span>Historial Salarial</span>
+								<span>Solicitudes Aprobadas</span>
 
 							</a>
 
 						</li>
 
-					</ul>
-
-				</li>
-
-				<li>
-
-					<a href="empresas">
-						
-						<i class="fa fa-university"></i>
-						<span>Empresas</span>
-
-					</a>
-
-				</li>
-
+					</ul>	
 
 				<li>
 

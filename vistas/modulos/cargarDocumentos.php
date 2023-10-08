@@ -1,8 +1,8 @@
+
 <?php
 
-$idEmpleado = $_GET['idEmpleado'] ?? '';
+$idEmpleado = $_COOKIE['idEmpleado'] ?? '';
 ?>
-
   <div class="content-wrapper">
     
     <section class="content-header">
@@ -38,6 +38,8 @@ $idEmpleado = $_GET['idEmpleado'] ?? '';
         <div class="box box-success">
           
           <div class="box-header with-border">
+
+            <h3 class="box-title">Cargar Documento</h3>
 
             <form role="form" method="post" enctype="multipart/form-data">
 
@@ -153,6 +155,7 @@ $idEmpleado = $_GET['idEmpleado'] ?? '';
           
             <div class="box-header with-border"></div>
 
+
             <div class="box-body">
               
               <table class="table table-bordered table-striped dt-responsive tablas">
@@ -173,7 +176,7 @@ $idEmpleado = $_GET['idEmpleado'] ?? '';
                 <tbody>
                  <?php
 
-                  var_dump($idEmpleado);
+                  //var_dump($idEmpleado);
 
 
                   // Comprueba si idEmpleado es un número válido antes de usarlo en la consulta
@@ -225,3 +228,10 @@ $idEmpleado = $_GET['idEmpleado'] ?? '';
 
 </div>
 
+          
+   <?php   
+
+          $ctrBorrarDocumento = new ControladorDocumentos();
+          $ctrBorrarDocumento -> ctrBorrarDocumento();
+
+  ?>

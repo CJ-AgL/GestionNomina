@@ -46,7 +46,7 @@
 
 								<img src="vistas/img/usuarios/perfil.png" class="user-image">
  
-								<span class="hidden-xs"><?php echo $_SESSION["nombreUsuario"];?> | <?php echo $_SESSION["perfil"];?></span>
+								<span class="hidden-xs"><?php echo $_SESSION["nombreUsuario"];?> | <?php echo $_SESSION["perfil"];?>  -<i class="fa fa-sign-out" aria-hidden="true"></i></span>
 
 							</a>
 

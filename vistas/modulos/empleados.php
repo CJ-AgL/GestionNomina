@@ -51,7 +51,7 @@
                                     <td>'.$value["correoElectronico"].'</td>
                                     <td> 
                                                 
-                                    <a href="#" class="btn btn-success btnDocumentos" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-clipboard"></i></a>
+                                    <a href="#" class="btn btn-success btnDocumentos" idEmpleado="'.$value["idEmpleado"].'"><i class="fa fa-file-pdf-o"></i></a>
 
 
 

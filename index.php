@@ -12,6 +12,7 @@ require_once "controladores/productos.controlador.php";
 require_once "controladores/empresas.controlador.php";
 require_once "controladores/documentos.controlador.php";
 require_once "controladores/historialLaboral.controlador.php";
+require_once "controladores/anticipos.controlador.php";
 
 /*=========================================
    			 MODELOS
@@ -24,6 +25,7 @@ require_once "modelos/productos.modelo.php";
 require_once "modelos/empresas.modelo.php";
 require_once "modelos/documentos.modelo.php";
 require_once "modelos/historialLaboral.modelo.php";
+require_once "modelos/anticipos.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

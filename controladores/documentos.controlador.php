@@ -115,4 +115,65 @@
                 }
             }
         }
+
+       
+    /*=============================================
+    OBTENER DOCUMENTO POR ID
+    =============================================*/
+
+    public static function ctrObtenerDocumentoPorId($idDocumento) {
+        
+        $tabla = "documentos";
+        
+        $documento = ModeloDocumentos::mdlObtenerDocumentoPorId($idDocumento);
+
+        // Realiza cualquier procesamiento adicional necesario
+
+        return $documento;
     }
+
+     /*=========================================
+           BORRAR DOCUMENTO
+    ===========================================*/
+
+    static public function ctrBorrarDocumento(){
+
+        if(isset($_GET["idDocumento"])){
+
+            $tabla = "documentos";
+            $datos = $_GET["idDocumento"];
+
+            $respuesta = ModeloDocumentos::mdlBorrarDocumento($tabla, $datos);
+
+            if($respuesta == "ok"){
+
+                echo '<script>
+
+                    swal({
+
+                            type: "success",
+                            title: "La documento ha sido borrada correctamente", 
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+
+                            }).then((result)=>{
+
+                                    if(result.value){
+
+                                        window.location = "cargarDocumentos";
+                                    }
+
+                                })
+
+                </script>';
+
+
+            }
+
+        }
+
+    }
+}
+
+    

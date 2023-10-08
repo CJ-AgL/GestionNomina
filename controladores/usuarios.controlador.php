@@ -34,6 +34,7 @@ class ControladorUsuarios {
                    
                     $_SESSION["iniciarSesion"] = "ok";
                     $_SESSION["idUsuario"] = $respuesta["idUsuario"];
+                    $_SESSION["idEmpleado"] = $respuesta["idEmpleado"];
                     $_SESSION["nombreUsuario"] = $respuesta["nombreUsuario"];
                     $_SESSION["idEmpresa"] = $respuesta["idEmpresa"];
                     $_SESSION["perfil"] = $respuesta["perfil"];

@@ -1,3 +1,9 @@
+<?php 
+
+$idDocumento = $_GET['idDocumento'] ?? '';
+
+?>
+
 <div class="content-wrapper">
   <section class="content-header">
     <h1>Manual de usuarios</h1>
@@ -11,25 +17,27 @@
     <div class="box">
       <div class="box-body">
                 <?php
-        if (isset($_GET['idDocumento'])) {
-            $idDocumento = $_GET['idDocumento'];
+                    
 
-            // Obtén el contenido del PDF desde el modelo
-            $contenidoPDF = ControladorDocumentos::obtenerContenidoPDFPorID($idDocumento);
+            if (!empty($documento)) {
 
-            if ($contenidoPDF !== false) {
-                // Establece las cabeceras para indicar que se va a mostrar un archivo PDF
+
+              // Llama al controlador para obtener el contenido del documento por su id
+            $documento = ControladorDocumentos::ctrObtenerDocumentoPorId($idDocumento);
+                // Recupera el contenido del documento desde la base de datos
+                $contenido = $documento[0]['contenido'];
+
+                // Configura las cabeceras HTTP para que el navegador entienda que se trata de un archivo PDF
                 header('Content-Type: application/pdf');
-                header('Content-Disposition: inline; filename="documento.pdf"');
+                header('Content-Disposition: inline; filename="documento.pdf"'); // Cambia el nombre del archivo según sea necesario
 
-                // Muestra el contenido del PDF
-                echo $contenidoPDF;
+                // Imprime el contenido del PDF
+                echo $contenido;
             } else {
+                // Maneja el caso en que no se encuentre el documento
                 echo 'Documento no encontrado.';
             }
-        } else {
-            echo 'ID de documento no proporcionado.';
-        }
+
         ?>
 
         </script>

@@ -73,4 +73,60 @@ class ModeloDocumentos{
             return "error"; // Puedes personalizar el mensaje de error según tu lógica.
         }
     }
+
+    /*=============================================
+        OBTENER DOCUMENTOS POR ID
+    =============================================*/
+
+    public static function mdlObtenerDocumentoPorId($idDocumento) {
+        // Establece la conexión a la base de datos (debes adaptar esto a tu configuración)
+        $conexion = Conexion::conectar();
+
+        try {
+            // Consulta SQL para obtener el documento por su ID
+            $stmt = $conexion->prepare("SELECT * FROM $tabla WHERE idDocumento = :idDocumento");
+            $stmt->bindParam(":idDocumento", $idDocumento, PDO::PARAM_INT);
+            $stmt->execute();
+
+            // Obtiene el resultado de la consulta
+            $documento = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Cierra la conexión a la base de datos
+            $conexion = null;
+
+            return $documento;
+        } catch (PDOException $e) {
+            // Maneja cualquier error de la base de datos
+            echo "Error en la consulta: " . $e->getMessage();
+            return null;
+        }
+    }
+
+     /*=========================================
+           BORRAR DOCUMENTO
+  ===========================================*/
+
+  static public function mdlBorrarDocumento($tabla, $datos){
+
+     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idDocumento = :idDocumento");
+
+    $stmt->bindParam(":idDocumento", $datos, PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+            return "ok";
+
+         }else{
+
+            return "error";
+         }
+
+         $stmt->close();
+
+         $stmt = null;
+
+
+  }
+
 }
+

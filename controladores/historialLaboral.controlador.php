@@ -108,5 +108,47 @@ class ControladorHistoriales{
 
     }
 
+     /*=========================================
+           BORRAR DOCUMENTO
+    ===========================================*/
+
+    static public function ctrBorrarHistorial(){
+
+        if(isset($_GET["idHistorial"])){
+
+            $tabla = "historial_laboral";
+            $datos = $_GET["idHistorial"];
+
+            $respuesta = ModeloHistoriales::mdlBorrarHistorial($tabla, $datos);
+
+            if($respuesta == "ok"){
+
+                echo '<script>
+
+                    swal({
+
+                            type: "success",
+                            title: "La informacion laboral ha sido borrada correctamente", 
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+
+                            }).then((result)=>{
+
+                                    if(result.value){
+
+                                        window.location = "historialLaboral";
+                                    }
+
+                                })
+
+                </script>';
+
+
+            }
+
+        }
+
+    }
 }
 
