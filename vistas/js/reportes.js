@@ -104,3 +104,4 @@ $(".daterangepicker.opensright .ranges li").on("click", function(){
     }
 
 })
+

@@ -6,41 +6,47 @@ $idDocumento = $_GET['idDocumento'] ?? '';
 
 <div class="content-wrapper">
   <section class="content-header">
-    <h1>Manual de usuarios</h1>
     <ol class="breadcrumb">
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Manual de usuarios</li>
     </ol>
   </section>
 
   <section class="content">
     <div class="box">
       <div class="box-body">
-                <?php
-                    
+        
+        <?php
 
-            if (!empty($documento)) {
+                  //var_dump($idEmpleado);
 
 
-              // Llama al controlador para obtener el contenido del documento por su id
-            $documento = ControladorDocumentos::ctrObtenerDocumentoPorId($idDocumento);
-                // Recupera el contenido del documento desde la base de datos
-                $contenido = $documento[0]['contenido'];
+                  // Comprueba si idEmpleado es un número válido antes de usarlo en la consulta
+                 if (is_numeric($idDocumento)) {
+                      $item = "contenido";
+                      $valor = $idDocumento;
 
-                // Configura las cabeceras HTTP para que el navegador entienda que se trata de un archivo PDF
-                header('Content-Type: application/pdf');
-                header('Content-Disposition: inline; filename="documento.pdf"'); // Cambia el nombre del archivo según sea necesario
+                      $documento = ControladorDocumentos::ctrMostrarDocumentosPorEmpleado($item, $valor);
 
-                // Imprime el contenido del PDF
-                echo $contenido;
-            } else {
-                // Maneja el caso en que no se encuentre el documento
-                echo 'Documento no encontrado.';
-            }
+                      // Verifica si se encontraron documentos
+                      if (!empty($documento)) {
+                          foreach ($documento as $key => $value) {
+                              echo '<tr>  
+                                  <td>' . $value["contenido"] . '</td>
+                                  
 
-        ?>
+                              </tr>';
+                          }
+                      } else {
+                          echo '<tr><td colspan="4">No se encontraron documentos para este empleado.</td></tr>';
+                      }
+                  } else {
+                      echo "El idEmpleado no es válido.";
+                  }
+                  ?>
+     
 
-        </script>
+
+
+      
       </div>
     </div>
   </section>

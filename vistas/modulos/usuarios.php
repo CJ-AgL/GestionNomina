@@ -70,44 +70,45 @@
                     <td>'.($key+1).'</td>';
 
 
-        $itemEmpleado = "idEmpleado";
-        $valorEmpleado = $value["idEmpleado"];
+                    $itemEmpleado = "idEmpleado";
+                    $valorEmpleado = $value["idEmpleado"];
 
-        $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
+                    $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
 
-        echo '<td><img src="data:image/jpeg;base64,'.base64_encode($respuestaEmpleado["foto"]).'" alt="Empleado Image" width="40"></td>';
+                    echo '<td><img src="data:image/jpeg;base64,'.base64_encode($respuestaEmpleado["foto"]).'" alt="Empleado Image" width="40"></td>';
 
-        echo '<td>'.$value["nombreUsuario"].'</td>
-              <td>'.$value["perfil"].'</td>';
+                    echo '<td>'.$value["nombreUsuario"].'</td>
+                          <td>'.$value["perfil"].'</td>';
 
 
-        $itemEmpresa = "idEmpresa";
-        $valorEmpresa = $value["idEmpresa"];
+                    $itemEmpresa = "idEmpresa";
+                    $valorEmpresa = $value["idEmpresa"];
 
-        $respuestaEmpresa = ControladorEmpresas::ctrMostrarEmpresa($itemEmpresa, $valorEmpresa);
+                    $respuestaEmpresa = ControladorEmpresas::ctrMostrarEmpresa($itemEmpresa, $valorEmpresa);
 
-        echo '<td>' .$respuestaEmpresa["nombreEmpresa"]. '</td>';
- 
-        if ($value["estado"] != 0){
-            echo ' <td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="0">Activado</button></td>';
-        } else { 
-            echo ' <td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="1">Desactivado</button></td>';
-        }
+                    echo '<td>' .$respuestaEmpresa["nombreEmpresa"]. '</td>';
+             
+                    if ($value["estado"] != 0){
+                        echo ' <td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="0">Activado</button></td>';
+                    } else { 
+                        echo ' <td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="1">Desactivado</button></td>';
+                    }
 
-        echo '<td>'.$value["ultimo_login"].'</td>
-            <td>
-                <div class="btn-group">
-                    <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["idUsuario"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["idUsuario"].'"><i class="fa fa-times"></i></button>
-                </div>
-            </td>
-        </tr>';
-    }
+                    echo '<td>'.$value["ultimo_login"].'</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["idUsuario"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                                
+                                <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["idUsuario"].'"><i class="fa fa-times"></i></button>
+                            </div>
+                        </td>
+                    </tr>';
+                }
 
-} else {
-    echo '<tr><td colspan="6">No se encontraron usuarios.</td></tr>';
-}
-?>
+            } else {
+                echo '<tr><td colspan="6">No se encontraron usuarios.</td></tr>';
+            }
+            ?>
 
             </tbody>
 

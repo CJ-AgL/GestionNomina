@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     
     <section class="content-header">
-        <h1>Solicitud de Anticipos</h1>
+        <h1>Solicitud de Anticipos Pendientes</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li><a href="empleados"><i class="fa fa-dashboard"></i> Empleados</a></li>
@@ -13,82 +13,134 @@
     <section class="content">
         <div class="row">
             <!-- Formulario de Solicitud de Anticipos -->
-            <div class="col-lg-5 col-xs-12">
+            <div class="col-lg-4 col-xs-12">
                 <div class="box box-success">
                     <div class="box-header with-border">
                         <h3 class="box-title">Solicitar Anticipo</h3>
                         <form role="form" method="post">
                             <div class="box-body">
 
-                            <!-- Campo oculto para idEmpleado -->
-                                    <input type="hidden" name="idEmpleado" value="<?php echo $_SESSION["idEmpleado"]; ?>">
+                           
+
+                            <!-- Campo para Codigo Empleado -->
+                            <div class="form-group">
+                  
+                              <div class="input-group">
+                                
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                
+                               <select class="form-control select2" style="width: 100%;" id="idEmpleado" name="idEmpleado" required>
+
+                                <option value="" disabled selected>Seleccionar Codigo</option>
+
+                                <?php
+
+                                  $item = null;
+                                  $valor = null;
+
+                                  $empresa = ControladorAnticipos::ctrMostrarAnticiposPendientes($item, $valor);
+
+                                   foreach ($empresa as $key => $value) {
                                    
-                            <!-- Campo Monto -->
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                                        <input type="number" class="form-control input-lg" name="nuevoMonto" placeholder="Monto del Anticipo" min="0" required>
-                                    </div>
-                                </div>
+                                     echo '<option value="'.$value["idEmpleado"].'">'.$value["codigo"]. '</option>';
 
-                                <!-- Campo Motivo -->
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                        <textarea class="form-control input-lg" name="nuevoMotivo" placeholder="Motivo de la Solicitud" rows="4" required></textarea>
-                                    </div>
-                                </div>
+                                   }
+
+                                ?>
+
+                                </select>
+                                
+                              </div>
+                            
+                            </div>
+                            
+                             <!-- ENTRADA PARA EL GENERO -->
+          
+                               <div class="form-group"> 
+
+                                  <div class="input-group"> 
+
+                                      <span class="input-group-addon"><i class="fa fa-check-square-o"></i></span>
+
+                                      <select class="form-control input-lg" name="nuevoEstado" id="nuevoEstado">
+                                         <option value="">Cambiar Estado</option>
+
+                                          <option value="Aprobado">Aprobado</option>
+
+                                          <option value="Rechazado">Rechazado</option>
+
+                                      </select>
+
+                                  </div>
+
+                              </div>
+                                   
+                            <!-- Campo oculto para idUsuario -->
+                            <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary pull-right">Enviar Solicitud</button>
-                                    <button type="button" class="btn btn-danger" id="cancelarSolicitud">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary pull-right">Cambiar Estado</button>
+                                    <button type="button" class="btn btn-danger" id="cancelarP">Cancelar</button>
                                 </div>
                             </div>
                         </form>
                         <?php
 
                           $crearAnticipo = new ControladorAnticipos();
-                          $crearAnticipo -> ctrAgregarAnticipo();
+                          $crearAnticipo -> ctrActualizarEstadoAnticipo();
 
                         ?>  
 
                     </div>
                 </div>
             </div>
-            <!-- Tabla de Solicitudes de Anticipos -->
-            <div class="col-lg-7 ">
+
+
+
+            <!-- TABLA ANTICIPOS PENDIENTES -->
+            <div class="col-lg-8 ">
                 <div class="box box-warning">
                     <div class="box-header with-border"></div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped dt-responsive tablas">
+                        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                             <thead>
                                 <tr>
                                     <th style="width: 10px;">#</th>
+                                    <th>Codigo</th>
+                                    <th>Empleado</th>
                                     <th>Monto</th>
                                     <th>Motivo</th>
-                                    <th>Fecha de Solicitud</th>
+                                    <th>Fecha Solicitud</th>
                                     <th>Estado</th>
-                                    <th style="width: 10px;">Acciones</th>
+                                    <th>Acciones</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                               <?php 
 
-                                $idEmpleado = $_SESSION['idEmpleado'];
 
-                                 $item = "idEmpleado";
-                                  $valor = $idEmpleado;
+                                 $item = null;
+                                 $valor = null;
 
                                 // var_dump($idEmpleado);
 
-                                  $anticipos = ControladorAnticipos::ctrMostrarAnticipos( $item, $valor);
+                                  $anticipos = ControladorAnticipos::ctrMostrarAnticiposPendientes($item, $valor);
 
                                   foreach ($anticipos as $key => $value) {
                                     
                                     echo '<tr>  
                                           <td>'.($key+1).'</td>
-                                          <td>'.$value["monto"].'</td>
+                                          <td>'.$value["codigo"].'</td>';
+
+                                  $itemEmpleado = "idEmpleado";
+                                  $valorEmpleado = $value["idEmpleado"];
+
+                                  $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
+
+                                    echo '<td>' .$respuestaEmpleado["nombre"]. ' ' .$respuestaEmpleado["apellido"].'</td>';
+
+                                    echo '<td>'.$value["monto"].'</td>
                                           <td>'.$value["motivo"].'</td>
                                           <td>'.$value["fechaSolicitud"].'</td>
                                           <td>'.$value["estado"].'</td>
@@ -117,82 +169,6 @@
     </section>
 </div>
 
-<!-- =========================================
-               MODAL EDITAR SOLICITUD ANTICIPO
-    ===========================================-->
-
-   
-  <!-- Modal -->
-  <div id="modalEditarAnticipo" class="modal fade" role="dialog">
-
-    <div class="modal-dialog">
-
-      
-      <div class="modal-content">
-
-          <form role="form" method="post">  
-    <!-- =========================================
-               CABEZA DEL MODAL
-    ===========================================-->
-
-        <div class="modal-header" style="background: #2f4540; color: white">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Editar Solicitud</h4>
-
-        </div>
-
-<!-- =========================================
-             CUERPO DEL MODAL
-  ===========================================-->
-      <div class="modal-body">
-      
-      <div class=" box-body">
-
-        <!-- Campo Monto -->
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input type="number" class="form-control input-lg" name="editarMonto" id="editarMonto" placeholder="Monto del Anticipo" min="0" required>
-
-                    <input type="hidden" name="idAnticipo" id="idAnticipo" required>
-                </div>
-            </div>
-
-            <!-- Campo Motivo -->
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                    <textarea class="form-control input-lg" name="editarMotivo" id="editarMotivo"  placeholder="Motivo de la Solicitud" rows="4" required></textarea>
-                </div>
-            </div>
-
-
-      </div>  
-
-
-</div>
-<!-- =========================================
-             PIE DEL MODAL
-  ===========================================-->
-      <div class="modal-footer">
-
-        <button type="button" class="btn btn-default  pull-left" data-dismiss="modal">Salir</button>
-
-        <button type="submit" class="btn btn-success">Guardar cambios</button>
-
-      </div>
-
-     
-
-      </form>
-
-    </div>
-
-  </div>
-
-</div>
  <?php
 
   $eliminarAnticipo = new ControladorAnticipos();

@@ -3,6 +3,19 @@
 
     class ControladorEmpleados{
 
+         /*=============================================
+    MOSTRAR EMPLEADOS
+ =============================================*/
+    static public function ctrMostrarEmpleados($item, $valor){
+
+        $tabla = "empleados";
+
+        $respuesta = ModeloEmpleados::mdlMostrarEmpleados($tabla, $item, $valor);
+
+        return $respuesta;
+
+    }
+
         /*=============================================
         CREAR EMPLEADOS
         =============================================*/
@@ -76,18 +89,7 @@
         }
     }
 
-    /*=============================================
-    MOSTRAR EMPLEADOS
- =============================================*/
-    static public function ctrMostrarEmpleados($item, $valor){
-
-        $tabla = "empleados";
-
-        $respuesta = ModeloEmpleados::mdlMostrarEmpleados($tabla, $item, $valor);
-
-        return $respuesta;
-
-    }
+   
 
 
     /*=========================================

@@ -13,16 +13,62 @@
     <section class="content">
         <div class="row">
             <!-- Formulario de Solicitud de Anticipos -->
-            <div class="col-lg-5 col-xs-12">
+            <div class="col-lg-4 col-xs-12">
                 <div class="box box-success">
                     <div class="box-header with-border">
                         <h3 class="box-title">Solicitar Anticipo</h3>
                         <form role="form" method="post">
                             <div class="box-body">
 
+
                             <!-- Campo oculto para idEmpleado -->
-                                    <input type="hidden" name="idEmpleado" value="<?php echo $_SESSION["idEmpleado"]; ?>">
+
+                              <input type="hidden" name="idEmpleado" value="<?php echo $_SESSION["idEmpleado"]; ?>">
                                    
+                            <!-- Campo para Codigo  -->
+
+                              <div class="form-group">
+                              
+                              <div class="input-group">
+                                
+                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                                <?php
+
+                                $item = null;
+                                $valor = null;
+
+                                $anticipos = ControladorAnticipos::ctrMostrarAnticipos($item, $valor);
+
+                                if(!$anticipos){
+
+                                  echo '<input type="text" class="form-control" id="nuevoCodigo" name="nuevoCodigo" value="101" readonly>';
+                              
+
+                                }else{
+
+                                  foreach ($anticipos as $key => $value) {
+                                    
+                                    
+                                  
+                                  }
+
+                                  $codigo = $value["codigo"] + 1;
+
+
+
+                                  echo '<input type="text" class="form-control" id="nuevoCodigo" name="nuevoCodigo" value="'.$codigo.'" readonly>';
+                              
+
+                                }
+
+                                ?>
+                                
+                                
+                              </div>
+                            
+                            </div>
+
                             <!-- Campo Monto -->
                                 <div class="form-group">
                                     <div class="input-group">
@@ -56,17 +102,19 @@
                 </div>
             </div>
             <!-- Tabla de Solicitudes de Anticipos -->
-            <div class="col-lg-7 ">
+            <div class="col-lg-8 ">
                 <div class="box box-warning">
                     <div class="box-header with-border"></div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped dt-responsive tablas">
+                        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                             <thead>
                                 <tr>
                                     <th style="width: 10px;">#</th>
+                                    <th>Codigo</th>
                                     <th>Monto</th>
                                     <th>Motivo</th>
                                     <th>Fecha de Solicitud</th>
+                                    <th>Fecha de Aprobación</th>
                                     <th>Estado</th>
                                     <th style="width: 10px;">Acciones</th>
 
@@ -88,9 +136,11 @@
                                     
                                     echo '<tr>  
                                           <td>'.($key+1).'</td>
+                                          <td>'.$value["codigo"].'</td>
                                           <td>'.$value["monto"].'</td>
                                           <td>'.$value["motivo"].'</td>
                                           <td>'.$value["fechaSolicitud"].'</td>
+                                          <td>'.$value["fechaAprobacion"].'</td>
                                           <td>'.$value["estado"].'</td>
                                           <td>
                                             

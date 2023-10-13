@@ -78,3 +78,14 @@ $(".btnEliminarDocuemento").click(function(){
     }) 
 
 })
+
+/*=============================================
+IMPRIMIR FACTURA
+=============================================*/
+$(".tablas").on("click", ".btnMostrarContenido", function(){
+
+    var idDocumento = $(this).attr("idDocumento");
+
+    window.open("vistas/modulos/mostrarDocumento.php?idDocumento="+idDocumento, "_blank");
+
+})

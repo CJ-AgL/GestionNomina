@@ -193,7 +193,7 @@ $idEmpleado = $_COOKIE['idEmpleado'] ?? '';
                                   <td>' . ($key + 1) . '</td>
                                   <td>' . $value["tipoDocumento"] . '</td>
                                   <td>' . $value["nombreArchivo"] . '</td>
-                                  <td><a href="mostrarDocumento?idDocumento=' . $value["idDocumento"] . '" target="_blank">Ver PDF</a></td>
+                                  <td><button class="btn btn-success btnMostrarContenido" idDocumento="'.$value["idDocumento"].'">VER PDF</td>
 
                                   <td>
                                   <div class="btn-group"> 

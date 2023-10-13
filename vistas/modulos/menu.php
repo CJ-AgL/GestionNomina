@@ -73,7 +73,7 @@
 							<a href="anticipos">
 
 								<i class="fa fa-circle-o"></i>
-								<span>Solicitar de Anticipos</span>
+								<span>Solicitudes de Anticipos</span>
 
 							</a>
 
@@ -102,6 +102,59 @@
 						</li>
 
 					</ul>	
+
+						<li>
+					
+					<a href="">
+						
+						<i class="fa fa-folder"></i>
+						<span>Nomina Mensual</span>
+						<span class="pull-right-container">
+							
+							<i class="fa fa-angle-left pull-right"></i>
+
+						</span>
+
+					</a>
+
+					<ul class="treeview-menu">
+						
+						<li>
+							
+							<a href="solicitudesAusencias">
+
+								<i class="fa fa-circle-o"></i>
+								<span>Solicitar de Ausencia</span>
+
+							</a>
+
+						</li>
+
+						<li>
+							
+							<a href="solicitudesPendientes">
+
+								<i class="fa fa-circle-o"></i>
+								<span>Solicitudes Pendientes</span>
+
+							</a>
+
+						</li>
+
+						<li>
+							
+							<a href="solicitudesAceptadas">
+
+								<i class="fa fa-circle-o"></i>
+								<span>Solicitudes Aprobadas</span>
+
+							</a>
+
+						</li>
+
+					</ul>	
+
+
 
 				<li>
 

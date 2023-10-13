@@ -1,16 +1,13 @@
 <?php
 
-require_once "../../../controladores/ventas.controlador.php";
-require_once "../../../modelos/ventas.modelo.php";
 
-require_once "../../../controladores/clientes.controlador.php";
-require_once "../../../modelos/clientes.modelo.php";
+require_once "../../../controladores/anticipos.controlador.php";
+require_once "../../../modelos/anticipos.modelo.php";
 
 require_once "../../../controladores/usuarios.controlador.php";
 require_once "../../../modelos/usuarios.modelo.php";
 
-require_once "../../../controladores/productos.controlador.php";
-require_once "../../../modelos/productos.modelo.php";
+
 
 
 class imprimirRecibo{
@@ -19,35 +16,35 @@ public $codigo;
 
 public function traerImpresionRecibo(){
 
-// TRAEMOS LA INFROMACION DE LA VENTA
 
-$itemVenta = "codigo";
-$valorVenta = $this->codigo;
+// TRAEMOS LA INFROMACION DEL ANTICIPO
 
-$respuestaVenta = ControladorVentas::ctrMostrarVentas($itemVenta, $valorVenta);
+$itemAnticipo = "codigo";
+$valorAnticipo = $this->codigo;
 
+$respuestaAnticipo = ControladorAnticipos::ctrMostrarAnticiposI($itemAnticipo, $valorAnticipo);
 
-
-$productos = json_decode($respuestaVenta["productos"], true);
-$neto = number_format($respuestaVenta["neto"],2);
-$impuesto = number_format($respuestaVenta["impuesto"],2);
-$total = number_format($respuestaVenta["total"],2);
-
-
-// TRAENDO LA INFORMACION DEL CLIENTE
-
-$itemCliente = "id";
-$valorCliente = $respuestaVenta["id_cliente"];
-
-$respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
-
-// TRAENDO LA INRMACION DEL VENDEDOR
+$monto = $respuestaAnticipo["monto"];
+$fechaSolicitud = $respuestaAnticipo["fechaSolicitud"];
+$fechaAprobacion = $respuestaAnticipo["fechaAprobacion"];
+$motivo = $respuestaAnticipo["motivo"];
+$idAprobador = $respuestaAnticipo["idAprobador"];
+$estado = $respuestaAnticipo["estado"];
+$idEmpleado = $respuestaAnticipo["idEmpleado"];
 
 
-$itemVendedor = "id";
-$valorVendedor = $respuestaVenta["id_vendedor"];
+//INF. USUARIO
 
-$respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
+$itemUsuario = "idUsuario";
+$valorUsuario = $respuestaAnticipo["idAprobador"];
+
+$respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
+
+$nombreUsuario = $respuestaUsuario["nombreUsuario"];
+
+
+
+
 
 
 
@@ -100,7 +97,7 @@ $bloque1 = <<<EOF
 
 			</td>
 
-			<td style="background-color:white; widht:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$valorVenta</td>
+			<td style="background-color:white; widht:110px; text-align:center; color:red"><br><br>INFORME N.<br>$valorAnticipo</td>
 
 		</tr>
 
@@ -130,27 +127,22 @@ $bloque2 = <<<EOF
 	
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:390px">
+			<td style="border: 1px solid #666; background-color:white; width:270px">
 
-				Cliente: $respuestaCliente[nombre]
-
-			<td style="border: 1px solid #666; background-color:white; width:390px">
-
-				Cliente: $respuestaCliente[nit]
+				Encargado: $nombreUsuario
 
 			</td>
 
-			<td style="border: 1px solid #666; background-color:white; width:150px; text-align:left">
+			<td style="border: 1px solid #666; background-color:white; width:270px; text-align:left">
 			
-				Fecha: $respuestaCliente[ultima_compra]
-
+				Fecha Aprobación: $fechaAprobacion
 			</td>
 
 		</tr>
 
 		<tr>
 
-		<td style="border: 1px solid #666; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
+		<td style="border: 1px solid #666; background-color:white; width:540px">Empleado:  </td>
 
 
 		</tr>
@@ -178,11 +170,10 @@ $bloque3 = <<<EOF
 
 		<tr>
 		
-		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unitario</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
-
+		<td style="border: 1px solid #666; background-color:white; width:200px; text-align:center">Motivo</td> 
+		<td style="border: 1px solid #666; background-color:white; width:113px; text-align:center">Monto</td> 
+		<td style="border: 1px solid #666; background-color:white; width:113px; text-align:center">Estado</td>
+		<td style="border: 1px solid #666; background-color:white; width:113px; text-align:center">Fecha Solicitud</td>
 		</tr>
 
 
@@ -195,19 +186,6 @@ $pdf->writeHTML($bloque3, false, false, false, false, '');
 
 // ---------------------------------------------------------
 
-foreach ($productos as $key => $item) {
-
-
-$itemProducto = "descripcion";
-$valorProducto = $item["descripcion"];
-$orden = "id";
-
-$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-
-$valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
-
-$precioTotal = number_format($item["total"], 2);
-
 
 $bloque4 = <<<EOF
 
@@ -215,21 +193,22 @@ $bloque4 = <<<EOF
 
 		<tr>
 			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
-				$item[descripcion]
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:200px; text-align:center">
+				$motivo
 			</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
-				$item[cantidad]
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:113px; text-align:center">
+				Q.$monto
 			</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">Q. 
-				$valorUnitario
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:113px; text-align:center">
+				$estado
 			</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">Q. 
-				$precioTotal
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:113px; text-align:center"> 
+				$fechaSolicitud
 			</td>
+
 
 
 		</tr>
@@ -240,76 +219,10 @@ EOF;
 
 $pdf->writeHTML($bloque4, false, false, false, false, '');
 
-}
 
 // ---------------------------------------------------------
 
-$bloque5 = <<<EOF
 
-<table style="font-size:10px; padding:5px 10px;">
-
-		<tr>
-
-			<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
-
-
-			<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
-
-			<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
-
-		</tr>
-		
-		<tr>
-		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
-				Neto:
-			</td>
-
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				Q. $neto
-			</td>
-
-		</tr>
-
-		<tr>
-
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Impuesto:
-			</td>
-		
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				Q. $impuesto
-			</td>
-
-		</tr>
-
-		<tr>
-		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Total:
-			</td>
-			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				Q. $total
-			</td>
-
-		</tr>
-
-
-	</table>
-
-
-EOF;
-
-$pdf->writeHTML($bloque5, false, false, false, false, '');
-
-// ---------------------------------------------------------
 
 //SALIDA DEL ARCHIVO
 $pdf->Output('factura.pdf');

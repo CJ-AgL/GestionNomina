@@ -76,3 +76,5 @@ $(".btnEliminarAnticipo").click(function(){
         // Redirigir a la página de empleados
         window.location.href = 'inicio'; // Reemplaza 'empleados' con la URL correcta
     });
+
+

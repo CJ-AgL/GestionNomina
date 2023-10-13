@@ -164,6 +164,8 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
       $_GET["ruta"] == "historialLaboral" ||
       $_GET["ruta"] == "anticipos" ||
       $_GET["ruta"] == "solicitudesPendientes" ||
+      $_GET["ruta"] == "solicitudesAceptadas" ||
+      $_GET["ruta"] == "solicitudesAusencias" ||
       $_GET["ruta"] == "categorias" ||  
       $_GET["ruta"] == "productos" ||
       $_GET["ruta"] == "empresas" ||
@@ -214,7 +216,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
 <script src="vistas/js/documentos.js"></script>
 <script src="vistas/js/historialLaboral.js"></script>
 <script src="vistas/js/anticipos.js"></script>
-
+<script src="vistas/js/informe.js"></script>
 
 
 </body>

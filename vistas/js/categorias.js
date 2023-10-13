@@ -100,3 +100,16 @@ $("#nuevaCategoria").change(function(){
     });
 
 })
+
+
+/*=============================================
+ Función para cancelar la carga de documentos y redirigir a la página de anticipos
+=============================================*/
+
+    document.getElementById('cancelarP').addEventListener('click', function() {
+        // Eliminar la variable de localStorage
+        localStorage.removeItem('idEmpleado');
+
+        // Redirigir a la página de empleados
+        window.location.href = 'solicitudesAceptadas'; // Reemplaza 'empleados' con la URL correcta
+    });
