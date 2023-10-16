@@ -166,6 +166,11 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
       $_GET["ruta"] == "solicitudesPendientes" ||
       $_GET["ruta"] == "solicitudesAceptadas" ||
       $_GET["ruta"] == "solicitudesAusencias" ||
+      $_GET["ruta"] == "ausenciasPendientes" ||
+      $_GET["ruta"] == "ausenciasAprobadas" ||
+      $_GET["ruta"] == "hrsExtras" ||
+      $_GET["ruta"] == "hrsExtrasPendientes" ||
+      $_GET["ruta"] == "hrsExtrasAprobadas" ||
       $_GET["ruta"] == "categorias" ||  
       $_GET["ruta"] == "productos" ||
       $_GET["ruta"] == "empresas" ||

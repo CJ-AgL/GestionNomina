@@ -107,8 +107,8 @@
 					
 					<a href="">
 						
-						<i class="fa fa-folder"></i>
-						<span>Nomina Mensual</span>
+						<i class="fa fa-calendar"></i>
+						<span>Ausencias</span>
 						<span class="pull-right-container">
 							
 							<i class="fa fa-angle-left pull-right"></i>
@@ -124,7 +124,7 @@
 							<a href="solicitudesAusencias">
 
 								<i class="fa fa-circle-o"></i>
-								<span>Solicitar de Ausencia</span>
+								<span>Solicitud de Ausencia</span>
 
 							</a>
 
@@ -132,7 +132,7 @@
 
 						<li>
 							
-							<a href="solicitudesPendientes">
+							<a href="ausenciasPendientes">
 
 								<i class="fa fa-circle-o"></i>
 								<span>Solicitudes Pendientes</span>
@@ -143,7 +143,7 @@
 
 						<li>
 							
-							<a href="solicitudesAceptadas">
+							<a href="ausenciasAprobadas">
 
 								<i class="fa fa-circle-o"></i>
 								<span>Solicitudes Aprobadas</span>
@@ -153,10 +153,76 @@
 						</li>
 
 					</ul>	
+				
+					<li>
+					
+					<a href="">
+						
+						<i class="fa fa-clock-o"></i>
+						<span>Horas Extras</span>
+						<span class="pull-right-container">
+							
+							<i class="fa fa-angle-left pull-right"></i>
 
+						</span>
 
+					</a>
+
+					<ul class="treeview-menu">
+						
+						<li>
+							
+							<a href="hrsExtras">
+
+								<i class="fa fa-circle-o"></i>
+								<span>Registrar Horas Extras</span>
+
+							</a>
+
+						</li>
+
+						<li>
+							
+							<a href="hrsExtrasPendientes">
+
+								<i class="fa fa-circle-o"></i>
+								<span>Aprobar Registros</span>
+
+							</a>
+
+						</li>
+
+						<li>
+							
+							<a href="hrsExtrasAprobadas">
+
+								<i class="fa fa-circle-o"></i>
+								<span>Solicitudes Aprobadas</span>
+
+							</a>
+
+						</li>
+
+					</ul>	
+				
 
 				<li>
+					
+					<a href="">
+						
+						<i class="fa fa-shopping-bag"></i>
+						<span>Tienda Solidarista</span>
+						<span class="pull-right-container">
+							
+							<i class="fa fa-angle-left pull-right"></i>
+
+						</span>
+
+					</a>
+
+					<ul class="treeview-menu">
+						
+						<li>
 
 					<a href="categorias">
 						
@@ -176,6 +242,11 @@
 
 					</a>
 
+
+				</li>
+					
+
+					</ul>
 
 				</li>
 

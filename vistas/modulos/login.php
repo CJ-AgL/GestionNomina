@@ -6,23 +6,71 @@
     </div>
 
     <div class="login-box-body">
-        <p class="login-box-msg">Ingresar al sistema</p>
+        <p class="login-box-msg">INGRESAR AL SISTEMA</p>
 
         <form method="post">
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="ID de la Empresa" name="idEmpresa" id="idEmpresa"  required>
-                <span class="glyphicon glyphicon-briefcase form-control-feedback"></span>
-            </div>
+             <div class="form-group">
 
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Nombre de Usuario" name="nombreUsuario"  id="nombreUsuario"required>
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
+                <!-- ENTRADA PARA LA EMPRESA -->
 
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Contraseña" name="contrasena" id="contrasena" required>
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
+                  
+                  <div class="input-group ">
+                    
+                    <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                    
+                    <select id="idEmpresa" name="idEmpresa" class="form-control select2" required>
+
+                    <option value="" disabled selected>Seleccionar Empresa</option>
+
+                    <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $empresa = ControladorEmpresas::ctrMostrarEmpresa($item, $valor);
+
+                       foreach ($empresa as $key => $value) {
+                       
+                         echo '<option value="'.$value["idEmpresa"].'">'.$value["nombreEmpresa"].'</option>';
+
+                       }
+
+                    ?>
+
+                    </select>
+                    
+                  </div>
+                
+                </div>
+
+            <!-- ENTRADA PARA EL USUARIO -->
+
+            <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="nombreUsuario" placeholder="Ingresar usuario" id="nombreUsuario"required>
+
+              </div>
+
+          </div>
+
+          
+             <!-- ENTRADA PARA EL CONTRASEÑA -->
+          
+           <div class="form-group"> 
+
+              <div class="input-group"> 
+
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                  <input type="password" class="form-control input-lg" name="contrasena" id="contrasena" placeholder="Ingresar Contraseña" required>
+
+              </div>
+
+          </div>
 
             <div class="row">
                 <div class="col-xs-4">

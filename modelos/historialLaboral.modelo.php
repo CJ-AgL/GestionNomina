@@ -51,7 +51,20 @@ class ModeloHistoriales{
         }
     }
 
-       /*=============================================
+        // Función para obtener el salario de un empleado por su ID
+static public function mdlObtenerSalarioPorEmpleado($tablaHistorialLaboral, $idEmpleado) {
+    try {
+        $stmt = Conexion::conectar()->prepare("SELECT salario FROM $tablaHistorialLaboral WHERE idEmpleado = :idEmpleado");
+        $stmt->bindParam(":idEmpleado", $idEmpleado, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)["salario"];
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+}
+
+
+    /*=============================================
     CREAR UN NUEVO REGISTRO EN EL HISTORIAL LABORAL
     =============================================*/
 

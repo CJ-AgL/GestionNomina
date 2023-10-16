@@ -134,7 +134,7 @@ class ControladorAnticipos {
         }
 
     /*=========================================
-           ACTUALIZAR EMPRESA
+           ACTUALIZAR SOLICITUD
     ===========================================*/   
 
 

@@ -2,25 +2,22 @@
 <div class="content-wrapper">
     
     <section class="content-header">
-        <h1>Solicitud de Anticipos Pendientes</h1>
+        <h1>Solicitud Pendientes de Ausencias </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li><a href="empleados"><i class="fa fa-dashboard"></i> Empleados</a></li>
-            <li class="active">Solicitud de Anticipos</li>
+            <li class="active">Solicitud de Ausencias</li>
         </ol>
     </section>
 
     <section class="content">
         <div class="row">
             <!-- Formulario de Solicitud de Anticipos -->
-            <div class="col-lg-4 col-xs-12">
+            <div class="col-lg-3 col-xs-12">
                 <div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Solicitar Anticipo</h3>
+                        <h3 class="box-title">Solicitar Ausencia</h3>
                         <form role="form" method="post">
                             <div class="box-body">
-
-                           
 
                             <!-- Campo para Codigo Empleado -->
                             <div class="form-group">
@@ -38,9 +35,9 @@
                                   $item = null;
                                   $valor = null;
 
-                                  $empresa = ControladorAnticipos::ctrMostrarAnticiposPendientes($item, $valor);
+                                  $ausencias = ControladorAusencias::ctrMostrarAusenciasPendientes($item, $valor);
 
-                                   foreach ($empresa as $key => $value) {
+                                   foreach ($ausencias as $key => $value) {
                                    
                                      echo '<option value="'.$value["idEmpleado"].'">'.$value["codigo"]. '</option>';
 
@@ -84,12 +81,13 @@
                                 </div>
                             </div>
                         </form>
-                        <?php
+                         <?php
 
-                          $crearAnticipo = new ControladorAnticipos();
-                          $crearAnticipo -> ctrActualizarEstadoAnticipo();
+                          $actualizarAusencias = new ControladorAusencias();
+                          $actualizarAusencias -> ctrActualizarEstadoAusencia();
 
                         ?>  
+
 
                     </div>
                 </div>
@@ -98,7 +96,7 @@
 
 
             <!-- TABLA ANTICIPOS PENDIENTES -->
-            <div class="col-lg-8 ">
+            <div class="col-lg-9 ">
                 <div class="box box-warning">
                     <div class="box-header with-border"></div>
                     <div class="box-body">
@@ -108,24 +106,27 @@
                                     <th style="width: 10px;">#</th>
                                     <th>Codigo</th>
                                     <th>Empleado</th>
-                                    <th>Monto</th>
                                     <th>Motivo</th>
-                                    <th>Fecha Solicitud</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha de Inicio</th>
+                                    <th>Fecha de Fin</th>
+                                    <th>Dias Ausente</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
+                                   
 
                                 </tr>
                             </thead>
                             <tbody>
-                              <?php 
+                               <?php 
 
+                              
 
                                  $item = null;
-                                 $valor = null;
+                                  $valor = null;
 
                                 // var_dump($idEmpleado);
 
-                                  $anticipos = ControladorAnticipos::ctrMostrarAnticiposPendientes($item, $valor);
+                                  $anticipos = ControladorAusencias::ctrMostrarAusenciasPendientes( $item, $valor);
 
                                   foreach ($anticipos as $key => $value) {
                                     
@@ -140,20 +141,13 @@
 
                                     echo '<td>' .$respuestaEmpleado["nombre"]. ' ' .$respuestaEmpleado["apellido"].'</td>';
 
-                                    echo '<td>'.$value["monto"].'</td>
+                                    echo ' <td>'.$value["razon"].'</td>
                                           <td>'.$value["motivo"].'</td>
-                                          <td>'.$value["fechaSolicitud"].'</td>
+                                          <td>'.$value["fechaInicio"].'</td> 
+                                          <td>'.$value["fechaFin"].'</td>
+                                          <td>'.$value["diasAusencia"].'</td>
                                           <td>'.$value["estado"].'</td>
-                                          <td>
                                             
-                                            <div class="btn-group">
-                                              
-
-                                               <button class="btn btn-danger btnEliminarAnticipo" idAnticipo="'.$value["idAnticipo"].'"><i class="fa fa-times"></i></button>
-
-                                            </div>
-
-                                          </td>
 
                                         </tr>';
 

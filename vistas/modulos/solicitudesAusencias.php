@@ -39,7 +39,7 @@
 
                                 if(!$ausencias){
 
-                                  echo '<input type="text" class="form-control" id="nuevoCodigo" name="nuevoCodigo" value="101" readonly>';
+                                  echo '<input type="text" class="form-control" id="nuevoCodigo" name="nuevoCodigo" value="201" readonly>';
                               
 
                                 }else{
@@ -175,7 +175,7 @@
                                     <th>Fecha de Fin</th>
                                     <th>Dias Ausente</th>
                                     <th>Estado</th>
-                                    <th style="width: 10px;">Acciones</th>
+                                    <th>Acciones</th>
 
                                 </tr>
                             </thead>
@@ -201,7 +201,7 @@
                                           <td>'.$value["fechaInicio"].'</td> 
                                           <td>'.$value["fechaFin"].'</td>
                                           <td>'.$value["diasAusencia"].'</td>
-                                          <td>'.$value["estadoSolicitud"].'</td>
+                                          <td>'.$value["estado"].'</td>
                                           <td>
                                             
                                             <div class="btn-group">

@@ -1,0 +1,21 @@
+/* Estilo para el menú desplegable */
+.sidebar-menu ul.treeview-menu {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.sidebar-menu ul.treeview-menu li {
+    padding: 8px 0;
+}
+
+.sidebar-menu li.treeview > a > .fa-angle-left {
+    position: absolute;
+    right: 10px;
+}
+
+/* Mostrar el menú desplegable al pasar el mouse sobre un elemento */
+.sidebar-menu li.treeview:hover ul.treeview-menu {
+    display: block;
+}

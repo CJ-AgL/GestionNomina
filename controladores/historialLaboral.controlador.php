@@ -32,6 +32,7 @@ class ControladorHistoriales{
         return ($respuesta != null) ? $respuesta : array();
     }
 
+
        /*=============================================
          REGISTRAR HISTORIAL
          =============================================*/
