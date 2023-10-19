@@ -15,4 +15,18 @@ class Conexion{
 
 }		
 
-	//$link = new PDO("mysql:host=server0751.hostilimitado.com;dbname=nominass_gestionnomina", "nominass_caguila", "y@q2wn7mcr4P");	
+/*class Conexion{
+
+	static public function conectar(){
+
+		$link = new PDO("mysql:host=server0751.hostilimitado.com;dbname=nominass_gesnomina",
+			            "nominass_caguila",
+			            "~^eGP96^3@BK");
+
+		$link->exec("set names utf8");
+
+		return $link;
+
+	}
+
+}*/		

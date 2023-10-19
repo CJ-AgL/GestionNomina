@@ -1,8 +1,4 @@
-
-<?php
-
-$idEmpleado = $_COOKIE['idEmpleado'] ?? '';
-?>
+<?php $idEmpleado = $_COOKIE['idEmpleado'] ?? ''; ?>
   <div class="content-wrapper">
     
     <section class="content-header">
@@ -193,7 +189,8 @@ $idEmpleado = $_COOKIE['idEmpleado'] ?? '';
                                   <td>' . ($key + 1) . '</td>
                                   <td>' . $value["tipoDocumento"] . '</td>
                                   <td>' . $value["nombreArchivo"] . '</td>
-                                  <td><button class="btn btn-success btnMostrarContenido" idDocumento="'.$value["idDocumento"].'">VER PDF</td>
+                                  
+                                  <td><a href="#" class="btn btn-success btnVerDocumentos" idDocumento="'.$value["idDocumento"].'"><i></i>VER PDF</a></td>
 
                                   <td>
                                   <div class="btn-group"> 

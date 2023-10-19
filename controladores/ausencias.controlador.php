@@ -9,7 +9,7 @@ class ControladorAusencias {
 
     static public function ctrMostrarAusencia($item, $valor)
     {
-        $tabla = "solicitudesAusencias";
+        $tabla = "solicitudesausencias";
         $respuesta = ModeloAusencias::mdlMostrarAusencia($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -20,7 +20,7 @@ class ControladorAusencias {
 
     static public function ctrMostrarAusenciasI($item, $valor)
     {
-        $tabla = "solicitudesAusencias";
+        $tabla = "solicitudesausencias";
         $respuesta = ModeloAusencias::mdlMostrarAusenciasI($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -32,7 +32,7 @@ class ControladorAusencias {
 
     static public function ctrMostrarAusenciasPendientes($item, $valor)
     {
-        $tabla = "solicitudesAusencias";
+        $tabla = "solicitudesausencias";
         $respuesta = ModeloAusencias::mdlMostrarAusenciasPendientes($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -44,7 +44,7 @@ class ControladorAusencias {
 
     static public function ctrMostrarAusenciasAceptados($item, $valor)
     {
-        $tabla = "solicitudesAusencias";
+        $tabla = "solicitudesausencias";
         $respuesta = ModeloAusencias::mdlMostrarAusenciasAceptados($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();

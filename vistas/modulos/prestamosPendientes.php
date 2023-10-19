@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
     
     <section class="content-header">
@@ -96,7 +95,7 @@
 
 
 
-            <!-- TABLA ANTICIPOS PENDIENTES -->
+            <!-- TABLA PRESTAMOS PENDIENTES -->
             <div class="col-lg-9 ">
                 <div class="box box-warning">
                     <div class="box-header with-border"></div>

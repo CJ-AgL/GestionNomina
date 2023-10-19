@@ -1,6 +1,13 @@
+RewriteEngine On RewriteCond %{HTTP_HOST} ^www.domain.com$ RewriteCond %{REQUEST_URI} !^/HTML2/ RewriteRule ^(.*)$ /HTML2/$1
+
 Options All -Indexes
 
 RewriteEngine On
 
 RewriteRule ^([-a-zA-Z0-9]+)$ index.php?ruta=$1
 
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ index.php?ruta=$1 [L,QSA]

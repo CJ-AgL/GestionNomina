@@ -1,6 +1,4 @@
- <?php
-
- require_once "conexion.php";
+<?php require_once "conexion.php";
 
 
 class ModeloDocumentos{
@@ -51,6 +49,7 @@ class ModeloDocumentos{
         }
     }
 
+
     /*=============================================
     AGREGAR DOCUMENTO
     =============================================*/
@@ -74,33 +73,6 @@ class ModeloDocumentos{
         }
     }
 
-    /*=============================================
-        OBTENER DOCUMENTOS POR ID
-    =============================================*/
-
-    public static function mdlObtenerDocumentoPorId($idDocumento) {
-        // Establece la conexión a la base de datos (debes adaptar esto a tu configuración)
-        $conexion = Conexion::conectar();
-
-        try {
-            // Consulta SQL para obtener el documento por su ID
-            $stmt = $conexion->prepare("SELECT * FROM $tabla WHERE idDocumento = :idDocumento");
-            $stmt->bindParam(":idDocumento", $idDocumento, PDO::PARAM_INT);
-            $stmt->execute();
-
-            // Obtiene el resultado de la consulta
-            $documento = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Cierra la conexión a la base de datos
-            $conexion = null;
-
-            return $documento;
-        } catch (PDOException $e) {
-            // Maneja cualquier error de la base de datos
-            echo "Error en la consulta: " . $e->getMessage();
-            return null;
-        }
-    }
 
      /*=========================================
            BORRAR DOCUMENTO

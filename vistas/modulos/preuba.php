@@ -1,8 +1,4 @@
-
-<?php
-
-$idEmpleado = $_GET['idEmpleado'] ?? '';
-?>
+<?php $idEmpleado = $_GET['idEmpleado'] ?? '';?>
 
   <div class="content-wrapper">
     

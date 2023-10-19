@@ -1,5 +1,4 @@
-
- <div class="content-wrapper">
+<div class="content-wrapper">
     <section class="content-header">
         <h1>Solicitudes Aceptadas</h1>
         <ol class="breadcrumb">

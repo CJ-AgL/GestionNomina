@@ -9,7 +9,7 @@ class ControladorTransferencias {
 
     static public function ctrMostrarTransferencias($item, $valor)
     {
-        $tabla = "transferenciasBanco";
+        $tabla = "transferenciasbanco";
         $respuesta = ModeloTransferencias::mdlMostrarTransferencias($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -21,7 +21,7 @@ class ControladorTransferencias {
 
     static public function ctrMostrarTransferenciasI($item, $valor)
     {
-        $tabla = "transferenciasBanco";
+        $tabla = "transferenciasbanco";
         $respuesta = ModeloTransferencias::mdlMostrarTransferenciasI($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -33,7 +33,7 @@ class ControladorTransferencias {
 
     static public function ctrMostrarTransferenciasPendientes($item, $valor)
     {
-        $tabla = "transferenciasBanco";
+        $tabla = "transferenciasbanco";
         $respuesta = ModeloTransferencias::mdlMostrarTransferenciasPendientes($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -45,7 +45,7 @@ class ControladorTransferencias {
 
     static public function ctrMostrarTransferenciasAceptados($item, $valor)
     {
-        $tabla = "transferenciasBanco";
+        $tabla = "transferenciasbanco";
         $respuesta = ModeloTransferencias::mdlMostrarTransferenciasAceptados($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();

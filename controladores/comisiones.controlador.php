@@ -9,7 +9,7 @@ class ControladorComisiones {
 
     static public function ctrMostrarComisiones($item, $valor)
     {
-        $tabla = "ventasComsiones";
+        $tabla = "ventascomsiones";
         $respuesta = ModeloComisiones::mdlMostrarComisiones($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -40,7 +40,7 @@ static public function ctrAgregarVentas()
 {
     if (isset($_POST["nuevoMonto"])) {
         if (preg_match('/^\d+(\.\d+)?$/', $_POST["nuevoMonto"])) {
-            $tabla = "ventasComsiones";
+            $tabla = "ventascomsiones";
 
             $datos = array(
                 "idEmpleado" => $_POST["idEmpleado"],
@@ -88,7 +88,7 @@ static public function ctrAgregarVentas()
 static public function ctrCalcularBonifiacionesComision()
 {
     if (isset($_POST["idEmpleado"]) && isset($_POST["nuevoMes"]) && isset($_POST["nuevoCodigo"])) {
-        $tablaVentasComisiones = "ventasComsiones";
+        $tablaVentasComisiones = "ventascomsiones";
         $tablaBonificacion = "bonificacioncomision";
 
         $idEmpleado = $_POST["idEmpleado"];

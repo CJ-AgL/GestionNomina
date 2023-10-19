@@ -1,7 +1,4 @@
- <?php
-
- require_once "conexion.php";
-
+<?php require_once "conexion.php";
 
 class ModeloEmpleados{
 

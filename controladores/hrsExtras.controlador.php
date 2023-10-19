@@ -8,7 +8,7 @@ class ControladorHrsExtras {
 
     static public function ctrMostrarHrsExtras($item, $valor)
     {
-        $tabla = "horasExtras";
+        $tabla = "horasextras";
         $respuesta = ModeloHrsExtras::mdlMostrarHrsExtras($tabla, $item, $valor);
 
         // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
@@ -21,7 +21,7 @@ class ControladorHrsExtras {
 
     static public function ctrMostrarHrsExtrasPendientes($item, $valor)
     {
-        $tabla = "horasExtras";
+        $tabla = "horasextras";
         $respuesta = ModeloHrsExtras::mdlMostrarHrsExPendientes($tabla, $item, $valor);
 
         // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
@@ -34,7 +34,7 @@ class ControladorHrsExtras {
 
     static public function ctrMostrarHrsExtrasAprobado($item, $valor)
     {
-        $tabla = "horasExtras";
+        $tabla = "horasextras";
         $respuesta = ModeloHrsExtras::mdlMostrarHrsExtrasAceptados($tabla, $item, $valor);
          // Verifica si $respuesta es null y, si lo es, devuelve un arreglo vacío
         return ($respuesta != null) ? $respuesta : array();
@@ -48,7 +48,7 @@ class ControladorHrsExtras {
     {
         if (isset($_POST["nuevaHoras"])) {
             if (preg_match('/^\d+(\.\d+)?$/', $_POST["nuevaHoras"])) {
-                $tabla = "horasExtras";
+                $tabla = "horasextras";
                 $datos = array(
                     "idEmpleado" => $_POST["idEmpleado"],
                     "codigo" => $_POST["nuevoCodigo"],
@@ -97,7 +97,7 @@ class ControladorHrsExtras {
     static public function ctrActualizarEstadoHorasExtras()
     {
         if (isset($_POST["idEmpleado"]) && isset($_POST["nuevoEstado"]) && isset($_POST["idUsuario"])) {
-            $tablaHorasExtras = "HorasExtras";
+            $tablaHorasExtras = "horasextras";
             $tablaHistorialLaboral = "historial_laboral";
 
             date_default_timezone_set('America/Guatemala');

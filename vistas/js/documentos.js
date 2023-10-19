@@ -23,14 +23,10 @@ if (idEmpleado !== null) {
     // Asignar el valor a un input oculto con el id "idEmpleado"
     $("#idEmpleado").val(idEmpleado);
 
-    // Hacer lo que necesites con idEmpleado, por ejemplo, mostrarlo en la consola
     console.log('idEmpleado recuperado:', idEmpleado);
 
-    // Ahora puedes usar idEmpleado en tu tabla, por ejemplo, en una consulta AJAX
-    // para cargar los registros relacionados con ese empleado.
-    // Aquí puedes agregar la lógica para cargar los documentos relacionados.
+   
 } else {
-    // Si no se recuperó correctamente, puedes redirigir a una página de error o realizar otra acción.
     console.log('Error al recuperar idEmpleado');
 }
 
@@ -45,7 +41,7 @@ if (idEmpleado !== null) {
         localStorage.removeItem('idEmpleado');
 
         // Redirigir a la página de empleados
-        window.location.href = 'empleados'; // Reemplaza 'empleados' con la URL correcta
+        window.location.href = 'empleados'; 
     });
 
 /*=============================================

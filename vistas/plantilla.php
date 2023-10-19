@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html>
@@ -220,6 +218,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
 <script src="vistas/js/anticipos.js"></script>
 <script src="vistas/js/informe.js"></script>
 <script src="vistas/js/comisiones.js"></script>
+<script src="vistas/js/verDocumento.js"></script>
 
 
 </body>

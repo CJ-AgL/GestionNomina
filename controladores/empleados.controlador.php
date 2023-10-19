@@ -1,9 +1,6 @@
- <?php
+<?php class ControladorEmpleados{
 
-
-    class ControladorEmpleados{
-
-         /*=============================================
+ /*=============================================
     MOSTRAR EMPLEADOS
  =============================================*/
     static public function ctrMostrarEmpleados($item, $valor){

@@ -1,7 +1,4 @@
-<?php
-
-$idEmpleado = $_COOKIE['idEmpleado'] ?? '';
-?>
+<?php $idEmpleado = $_COOKIE['idEmpleado'] ?? ''; ?>
 
  
 

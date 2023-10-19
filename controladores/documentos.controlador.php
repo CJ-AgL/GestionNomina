@@ -16,8 +16,6 @@
         return ($respuesta != null) ? $respuesta : array();
     }
 
-    
-
         /*=============================================
         CREAR DOCUMENTO
         =============================================*/
@@ -70,7 +68,7 @@
                                 swal({
                                     type: "error",
                                     title: "¡Error al guardar el documento!",
-                                    text: "Ocurrió un problema al guardar el documento en la base de datos.",
+                                    text: "Tamaño de documento muy grande",
                                     showConfirmButton: true,
                                     confirmButtonText: "Cerrar",
                                     closeOnConfirm: false
@@ -115,22 +113,6 @@
                 }
             }
         }
-
-       
-    /*=============================================
-    OBTENER DOCUMENTO POR ID
-    =============================================*/
-
-    public static function ctrObtenerDocumentoPorId($idDocumento) {
-        
-        $tabla = "documentos";
-        
-        $documento = ModeloDocumentos::mdlObtenerDocumentoPorId($idDocumento);
-
-        // Realiza cualquier procesamiento adicional necesario
-
-        return $documento;
-    }
 
      /*=========================================
            BORRAR DOCUMENTO

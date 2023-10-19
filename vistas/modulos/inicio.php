@@ -31,7 +31,6 @@
 
              <div class="box-header">
 
-             <h1>Bienvenido - <?php echo $_SESSION["nombreUsuario"];?></h1>
 
              </div>
 
