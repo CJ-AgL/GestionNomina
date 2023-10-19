@@ -1,11 +1,6 @@
 <?php
-
 session_start();
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -116,10 +111,6 @@ session_start();
   <!-- PDF -->
 <script src="vistas/plugins/pdfjs-3.11.174-dist/build/pdf.js"></script>
 
-
-
-
-
 </head>
 
   <!--=========================================
@@ -129,10 +120,7 @@ session_start();
 <body class="hold-transition skin-blue sidebar-collapse  sidebar-mini login-page"> 
 <!-- Site wrapper -->
 
-  <?php
-
-//validar si se ha inciado sesión
-
+<?php
 if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
 {
 
@@ -171,6 +159,15 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
       $_GET["ruta"] == "hrsExtras" ||
       $_GET["ruta"] == "hrsExtrasPendientes" ||
       $_GET["ruta"] == "hrsExtrasAprobadas" ||
+      $_GET["ruta"] == "comisionesCalculos" ||
+      $_GET["ruta"] == "comisionesRegistro" ||
+      $_GET["ruta"] == "comisionesInforme" ||
+      $_GET["ruta"] == "prestamosAprobados" ||
+      $_GET["ruta"] == "prestamosSolicitud" ||
+      $_GET["ruta"] == "prestamosPendientes" ||
+      $_GET["ruta"] == "transferenciasPendientes" ||
+      $_GET["ruta"] == "transferenciasAprobación" ||
+      $_GET["ruta"] == "transferenciasRegistro" ||
       $_GET["ruta"] == "categorias" ||  
       $_GET["ruta"] == "productos" ||
       $_GET["ruta"] == "empresas" ||
@@ -222,6 +219,7 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok")
 <script src="vistas/js/historialLaboral.js"></script>
 <script src="vistas/js/anticipos.js"></script>
 <script src="vistas/js/informe.js"></script>
+<script src="vistas/js/comisiones.js"></script>
 
 
 </body>

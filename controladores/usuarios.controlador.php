@@ -1,7 +1,5 @@
 <?php
-
-class ControladorUsuarios {
-
+    class ControladorUsuarios {
 
     /*=========================================
       INGRESO DE USUARIOS
@@ -330,6 +328,5 @@ static public function ctrEditarUsuario(){
         }
 
   }
-
 
 }

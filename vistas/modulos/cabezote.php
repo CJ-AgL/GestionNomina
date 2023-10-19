@@ -9,7 +9,7 @@
 		<!-- logo mini -->
 		<span class="logo-mini">
 		
-			<img src="vistas/img/plantilla/piezas-de-repuesto.png" class="img-responsive" style="padding: 10px;">
+			<img src="vistas/img/menu/presupuesto.png" class="img-responsive" style="padding: 10px;">
 
 		</span>
 
@@ -17,7 +17,7 @@
 
 			<span class="logo-lg">
 			
-				<img src="" class="img-responsive" style="padding: 10px 0px;">
+				<img src="vistas/img/plantilla/logs.png" class="img-responsive" style="padding: 10px 0px;">
 
 		</span>
 
@@ -44,9 +44,9 @@
 				
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-								<img src="vistas/img/usuarios/perfil.png" class="user-image">
+								<img src="vistas/img/plantilla/usuer.png" class="user-image">
  
-								<span class="hidden-xs"><?php echo $_SESSION["nombreUsuario"];?> | <?php echo $_SESSION["perfil"];?>	<i class="fa fa-sign-out" aria-hidden="true"></i></span>
+								<span class="hidden-xs"><?php echo $_SESSION["perfil"];?><i aria-hidden="true"></i></span>
 
 							</a>
 

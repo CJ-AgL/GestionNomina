@@ -163,7 +163,7 @@ $idEmpleado = $_COOKIE['idEmpleado'] ?? '';
                 <thead>
                   
                   <tr>
-                    <th style="width: 10px;">#</th>
+                    <th style="width: 10px;">No.</th>
                     <th>Tipo</th>
                     <th>Nombre</th>
                     <th>Documento</th>

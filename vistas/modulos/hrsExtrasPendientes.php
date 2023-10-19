@@ -49,7 +49,7 @@
                                 <!-- Campo oculto para idUsuario -->
                                 <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary pull-right">Cambiar Estado</button>
+                                    <button type="submit" class="btn btn-success pull-right">Cambiar Estado</button>
                                     <button type="button" class="btn btn-danger" id="cancelarP">Cancelar</button>
                                 </div>
                             </div>

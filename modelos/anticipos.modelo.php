@@ -62,18 +62,6 @@ class ModeloAnticipos {
         return $stmt->fetchAll();
     }
 
-    /*=========================================
-            EMPLEADOS CON ANTICIPO PENDIENTE
-    ===========================================*/
-    public static function mdlObtenerEmpleadosConAnticipoPendiente($estadoPendiente) {
-        $stmt = Conexion::conectar()->prepare("SELECT DISTINCT e.idEmpleado, e.nombre, e.apellido
-            FROM empleados e
-            INNER JOIN anticipos a ON e.idEmpleado = a.idEmpleado
-            WHERE a.estado = :estadoPendiente");
-        $stmt->bindParam(":estadoPendiente", $estadoPendiente, PDO::PARAM_STR);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
 
     /*=============================================
     AGREGAR SOLICITUD ANTICIPO

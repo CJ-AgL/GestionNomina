@@ -84,7 +84,7 @@
                           </div>
                                
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary pull-right">Enviar Solicitud</button>
+                                    <button type="submit" class="btn btn-success pull-right">Enviar Solicitud</button>
                                     <button type="button" class="btn btn-danger" id="cancelarCargaA">Cancelar</button>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                         <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px;">#</th>
+                                    <th style="width: 10px;">No.</th>
                                     <th>Codigo</th>
                                     <th>Fecha de registro</th>
                                     <th>Horas Trabajadas</th>

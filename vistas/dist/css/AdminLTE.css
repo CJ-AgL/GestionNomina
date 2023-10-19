@@ -645,7 +645,7 @@ a:focus {
   position: relative !important;
   float: right;
   width: auto !important;
-  left: 180px !important;
+  left: 200px !important;
   top: -22px !important;
   z-index: 900;
 }
@@ -5697,3 +5697,5 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+ 

@@ -66,7 +66,7 @@
 
                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                  <input type="password" class="form-control input-lg" name="contrasena" id="contrasena" placeholder="Ingresar Contraseña" required>
+                  <input type="password" class="form-control input-lg" name="contrasena" id="contrasena" placeholder="Ingresar password" required>
 
               </div>
 

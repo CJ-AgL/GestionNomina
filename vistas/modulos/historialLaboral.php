@@ -188,7 +188,7 @@ $idEmpleado = $_COOKIE['idEmpleado'] ?? '';
 
                   <div class="form-group">
 
-                      <button type="submit" class="btn btn-primary pull-right">Guardar Documento</button>
+                      <button type="submit" class="btn btn-success pull-right">Guardar Documento</button>
                       <button type="button" class="btn btn-danger" id="cancelarCargaH">Cancelar</button>
                   </div>
 
@@ -224,7 +224,7 @@ $idEmpleado = $_COOKIE['idEmpleado'] ?? '';
                             <!-- Encabezados de la tabla aquí -->
                             <thead>
                                 <tr>
-                                    <th style="width: 10px;">#</th>
+                                    <th style="width: 10px;">No.</th>
                                     <th style="width: 10px;">Departamento</th>
                                     <th>Cargo</th>
                                     <th >Salario</th>

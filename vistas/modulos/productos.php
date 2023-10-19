@@ -42,7 +42,7 @@
               
               <tr>
                 
-                <th style="width: 10px">#</th>
+                <th style="width: 10px">No.</th>
                 <th>Código</th>
                 <th>Descripción</th>
                 <th>Categoría</th>
@@ -88,7 +88,7 @@ MODAL AGREGAR PRODUCTO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#2f4540; color:white">
+        <div class="modal-header" style="background:#009b78; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -295,7 +295,7 @@ MODAL AGREGAR PRODUCTO
              CABEZA DEL MODAL
   ===========================================-->
 
-      <div class="modal-header" style="background: #2f4540; color: white">
+      <div class="modal-header" style="background: #009b78; color: white">
 
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
